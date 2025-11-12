@@ -1,0 +1,116 @@
+.appbar {
+  position: absolute;
+  width: calc(100% - 290px);
+  left: 290px;
+  top: 0;
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #e4e7ec;
+}
+
+.appbar-container {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: calc(0.25rem * 6);
+}
+
+.appbar-left-section {
+  display: flex;
+  align-items: center;
+  padding-block: calc(0.25rem * 4);
+  gap: calc(0.25rem * 4);
+  flex-grow: 1;
+}
+
+.hamburger {
+  background-color: #fff;
+  width: calc(0.25rem * 11);
+  height: calc(0.25rem * 11);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e4e7ec;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.search-bar-container {
+  position: relative;
+}
+
+.search-bar-icon {
+  position: absolute;
+  top: calc(1 / 2 * 100%);
+  left: calc(0.25rem * 4);
+  transform: translateY(-42%);
+}
+
+.search-bar-input {
+  /* width: 100%; */
+  width: 430px;
+  height: 2.75rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  padding-left: 3rem;
+  padding-right: 3.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  background-color: transparent;
+  color: #1f2937;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.search-bar-input::placeholder {
+  color: #9ca3af;
+}
+
+.search-bar-input:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.appbar-right-section {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+
+.user-profile {
+  position: relative;
+}
+
+.user-profile-wrapper {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #344054;
+}
+
+.user-profile-avatar {
+  margin-right: 0.75rem;
+  width: calc(0.25rem * 11);
+  height: calc(0.25rem * 11);
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.user-profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-profile-name {
+  font-weight: 500;
+  margin-right: 0.25rem;
+  line-height: 20px;
+  font-size: 14px;
+}
