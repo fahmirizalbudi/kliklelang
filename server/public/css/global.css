@@ -6,3 +6,10 @@
   box-sizing: border-box;
   font-family: 'Outfit';
 }
+
+.main-app {
+  position: relative;
+  width: calc(100% - 290px);
+  left: 290px;
+  top: 77px;
+}

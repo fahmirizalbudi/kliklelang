@@ -1,0 +1,119 @@
+.login {
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+}
+
+.login-form {
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1;
+}
+
+.login-illustration {
+  display: flex;
+  flex: 2 1;
+  align-items: center;
+  justify-content: center;
+  padding: 100px;
+  border-left: 1px solid #e4e7ec;
+  background-color: rgba(70, 95, 255, 0.9);
+}
+
+.login-illustration-image {
+  height: 100%;
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
+.login-form-inner {
+  max-width: 550px;
+  width: 95%;
+}
+
+.brand-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: calc(0.25rem * 3);
+}
+
+.login-brand-logo {
+  border-radius: 6px;
+}
+
+.login-brand-text {
+  font-size: calc(0.25rem * 6);
+  font-weight: 600;
+  color: #101828;
+}
+
+.login-form-inner-header {
+  display: flex;
+  flex-direction: column;
+  margin-top: 42px;
+  gap: 12px;
+}
+
+.login-form-inner-header-text {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+}
+
+.login-form-inner-description-text {
+  text-align: justify;
+  color: #333;
+}
+
+.login-form-inner-body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 42px;
+}
+
+.login-form-inner-body-action {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-button {
+  margin-top: 8px;
+  border: none;
+  background-color: #465fff;
+  border: 1px solid #465fff;
+  color: #fff;
+  border-radius: 6px;
+  padding: 11.5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-form-inner-2 {
+  max-width: 550px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.login-as {
+  width: 100%;
+  margin-top: 8px;
+  text-decoration: none;
+  text-align: center;
+  background-color: #fff;
+  color: #465fff;
+  border: 1px solid #465fff;
+  border-radius: 6px;
+  padding: 11.5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
