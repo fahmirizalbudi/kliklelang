@@ -1,11 +1,12 @@
 .appbar {
-  position: absolute;
+  position: fixed;
   width: calc(100% - 290px);
   left: 290px;
   top: 0;
   display: flex;
   background-color: #fff;
   border-bottom: 1px solid #e4e7ec;
+  z-index: 99;
 }
 
 .appbar-container {
