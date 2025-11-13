@@ -36,9 +36,9 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'petugas' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'petugas',
         ],
     ],
 
@@ -60,9 +60,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'petugas' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Petugas::class,
         ],
 
         // 'users' => [
