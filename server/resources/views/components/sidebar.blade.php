@@ -22,8 +22,12 @@
         <x-sidebar-item text="Histori Lelang" icon="histori_lelang" />
       </x-sidebar-group>
 
-      <x-sidebar-group title="Laporan">
-        <x-sidebar-item text="Laporan Hasil Lelang" icon="laporan_hasil_lelang" />
+      <x-sidebar-group title="Rekap">
+        <x-sidebar-item text="Laporan" icon="laporan" />
+      </x-sidebar-group>
+
+      <x-sidebar-group title="Lainnya">
+        <x-sidebar-item text="Tentang" icon="tentang" />
       </x-sidebar-group>
     </nav>
   </div>
