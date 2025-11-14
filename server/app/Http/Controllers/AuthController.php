@@ -17,7 +17,7 @@ class AuthController extends Controller
     {
         $credentials = $request->validated();
         if (!Auth::guard('petugas')->attempt($credentials)) {
-            sweetalert()->addError(null, 'Username atau password salah. Silakan coba lagi.');
+            sweetalert()->addError('Username atau password salah. Silakan coba lagi.', 'Login Gagal');
             return redirect()->back()->withInput();
         }
 
@@ -28,5 +28,29 @@ class AuthController extends Controller
     public function login_masyarakat(Request $request)
     {
         dd('masyarakat');
+    }
+
+    public function logout(Request $request)
+    {
+        switch (true) {
+            case Auth::guard('petugas')->check():
+                Auth::guard('petugas')->logout();
+                $redirect = '/auth/login/petugas';
+                break;
+
+            case Auth::guard('masyarakat')->check():
+                Auth::guard('masyarakat')->logout();
+                $redirect = '/auth/login/masyarakat';
+                break;
+
+            default:
+                Auth::logout();
+                break;
+        }
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect($redirect);
     }
 }
