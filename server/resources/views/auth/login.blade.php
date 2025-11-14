@@ -2,7 +2,7 @@
 @section('title', 'KlikLelang - Log In ' . (request()->is('auth/login/petugas') ? 'Petugas' : 'Masyarakat'))
 
 @push('styles')
-  <link rel="stylesheet" href="{{ asset('css/pages/login.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/pages/login/style.css') }}">
 @endpush
 
 @section('content')
