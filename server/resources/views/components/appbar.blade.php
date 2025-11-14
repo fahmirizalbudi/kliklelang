@@ -31,13 +31,14 @@
           <span class="user-profile-avatar">
             <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//84/MTA-2044801/la_la-ice--16-batang---bungkus_full03.jpg" width="42" height="42" alt="Profile Avatar">
           </span>
-          <span class="user-profile-name">Fahmirizal Budi Ramadhan</span>
-          <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+          <span class="user-profile-name">{{ auth()->guard('petugas')->user()->nama_petugas }}</span>
+          <svg class="profile-dropdown-arrow" width="18" height="20" viewBox="0 0 18 20" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path d="M4.3125 8.65625L9 13.3437L13.6875 8.65625" stroke="#667085" stroke-width="1.5" stroke-linecap="round"
               stroke-linejoin="round"></path>
           </svg>
         </a>
+        <x-profile-dropdown></x-profile-dropdown>
       </div>
     </div>
   </div>

@@ -1,0 +1,79 @@
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 55px;
+  width: 260px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 12px 15px;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(-20px);
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.profile-container:hover .profile-dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header span:first-child {
+  font-weight: 500;
+  font-size: 14.3px;
+  color: #374151;
+}
+
+.profile-header span:last-child {
+  position: relative;
+  top: 1.5px;
+  font-size: 13.8px;
+  color: #6b7280;
+}
+
+.profile-list {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 10px 0;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #374151;
+  font-size: 13.5px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.profile-list-item:hover {
+  background: #f3f4f6;
+}
+
+.signout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #374151;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.signout-btn:hover {
+  background: #f3f4f6;
+}

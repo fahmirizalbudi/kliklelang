@@ -88,6 +88,22 @@
   position: relative;
 }
 
+.user-profile.active .profile-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: all;
+}
+
+.profile-dropdown-arrow {
+  transform: rotate(0);
+  transition: all 0.3s ease;
+}
+
+.user-profile.active .profile-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
 .user-profile-wrapper {
   display: flex;
   align-items: center;
