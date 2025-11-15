@@ -11,7 +11,7 @@
         @foreach ($daftarBarang as $barang)
           <x-row>
             <x-cell>
-              <p class="data-table-row-cell-text" style="color: #667085">{{ $loop->iteration }}</p>
+              <p class="default-cell-text" style="color: #667085">{{ $daftarBarang->firstItem() + $loop->index }}</p>
             </x-cell>
             <x-cell>
               <div class="barang-cell">
@@ -42,6 +42,9 @@
             </x-cell>
           </x-row>
         @endforeach
+        <x-slot name="footer">
+          {{ $daftarBarang->links('components.pagination') }}
+        </x-slot>
       </x-data-table>
     </section>
   </div>

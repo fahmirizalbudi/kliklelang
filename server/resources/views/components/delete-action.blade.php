@@ -3,7 +3,7 @@
 <form action="{{ $actionTo }}" method="POST">
   @csrf
   @method('DELETE')
-  <button class="delete-action" type="submit">
+  <button class="delete-action" type="button">
     <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
       aria-hidden="true" data-slot="icon">
       <path fill-rule="evenodd"
@@ -14,3 +14,26 @@
     Delete
   </button>
 </form>
+
+@push('scripts')
+  <script>
+    document.querySelectorAll('.delete-action').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        let form = this.closest('form');
+
+        Swal.fire({
+          title: 'Yakin ingin menghapus?',
+          text: 'Data akan dihapus secara permanen.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Ya, Hapus!',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            form.submit();
+          }
+        });
+      });
+    });
+  </script>
+@endpush

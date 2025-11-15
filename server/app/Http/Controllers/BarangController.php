@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BarangRequest;
 use App\Models\Barang;
-use Flasher\Laravel\Facade\Flasher;
-use Illuminate\Http\Request;
 use Storage;
+use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $daftarBarang = Barang::all();
+        $search = $request->input('search');
+        $daftarBarang = Barang::where('nama_barang', 'like', "%$search%")->paginate(7);
         return view('petugas.barang.index', compact('daftarBarang'));
     }
 

@@ -51,4 +51,11 @@
       </tbody>
     </table>
   </div>
+  <div class="data-table-footer">
+    {{ $footer }}
+  </div>
 </div>
+
+@push('scripts')
+<script src="{{ asset('js/event/search.js') }}"></script>
+@endpush

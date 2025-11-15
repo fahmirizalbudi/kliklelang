@@ -5,6 +5,8 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Outfit';
+  scrollbar-width: thin;
+  scrollbar-color: rgb(175, 175, 175) #f0f0f0;
 }
 
 body.petugas {
