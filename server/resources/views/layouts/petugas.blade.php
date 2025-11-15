@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ asset('css/components/breadcrumb.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/text-field.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/data-table.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/actions.css') }}">
   <link rel="icon" type="image/svg+xml" href="{{ asset('brand.svg') }}">
   @stack('styles')
 </head>

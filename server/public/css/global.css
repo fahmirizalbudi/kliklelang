@@ -7,6 +7,10 @@
   font-family: 'Outfit';
 }
 
+body.petugas {
+  background-color: #f9fafb;
+}
+
 .main-app {
   position: relative;
   width: calc(100% - 290px);
