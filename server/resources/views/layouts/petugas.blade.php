@@ -10,11 +10,14 @@
   <link rel="stylesheet" href="{{ asset('css/components/sidebar.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/appbar.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/profile-dropdown.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/breadcrumb.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/text-field.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/data-table.css') }}">
   <link rel="icon" type="image/svg+xml" href="{{ asset('brand.svg') }}">
   @stack('styles')
 </head>
 
-<body>
+<body class="petugas">
   <div class="app">
     <x-sidebar></x-sidebar>
     <x-appbar></x-appbar>
