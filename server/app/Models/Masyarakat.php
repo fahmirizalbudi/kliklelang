@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Masyarakat extends Model
 {
     use HasFactory;
+
+    protected $table = 'tb_masyarakat';
+    protected $primaryKey = 'id_user';
+    protected $fillable = ['nama_lengkap', 'username', 'password', 'telp'];
 }
