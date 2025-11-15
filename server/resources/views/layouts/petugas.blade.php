@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="{{ asset('css/components/actions.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/form-card.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/label-field.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendor/flasher/flasher.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendor/flasher/flasher-sweetalert.min.css') }}">
   <link rel="icon" type="image/svg+xml" href="{{ asset('brand.svg') }}">
   @stack('styles')
 </head>
@@ -29,6 +31,8 @@
     </main>
   </div>
   <script src="{{ asset('js/components/profile-dropdown.js') }}"></script>
+  <script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>
+  <script src="{{ asset('vendor/flasher/flasher-sweetalert.min.js') }}"></script>
   @stack('scripts')
 </body>
 
