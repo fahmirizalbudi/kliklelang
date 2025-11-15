@@ -1,0 +1,8 @@
+.label-field {
+  margin-bottom: calc(0.25rem * 2);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  display: block;
+  font-weight: 500;
+  color: #344054;
+}

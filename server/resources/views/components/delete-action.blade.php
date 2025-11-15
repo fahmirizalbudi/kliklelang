@@ -1,8 +1,9 @@
 @props(['actionTo'])
 
-<form action="{{ $actionTo }}" method="DELETE">
+<form action="{{ $actionTo }}" method="POST">
   @csrf
-  <button class="delete-action">
+  @method('DELETE')
+  <button class="delete-action" type="submit">
     <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
       aria-hidden="true" data-slot="icon">
       <path fill-rule="evenodd"

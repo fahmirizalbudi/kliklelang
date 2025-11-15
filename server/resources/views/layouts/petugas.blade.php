@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="{{ asset('css/components/text-field.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/data-table.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/actions.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/form-card.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/label-field.css') }}">
   <link rel="icon" type="image/svg+xml" href="{{ asset('brand.svg') }}">
   @stack('styles')
 </head>

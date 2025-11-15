@@ -17,3 +17,8 @@ body.petugas {
   left: 290px;
   top: 77px;
 }
+
+.fl-main-container .fl-container.fl-flasher {
+  background-color: #fff !important;
+  color: rgb(15, 23, 42) !important;
+}
