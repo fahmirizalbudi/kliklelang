@@ -1,0 +1,38 @@
+.content-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(0.25rem * 3);
+  padding-bottom: calc(0.25rem * 6);
+}
+
+.breadcrumb-active {
+  color: #1d2939;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.breadcrumb-navigation {
+  display: flex;
+  align-items: center;
+  gap: calc(0.25rem * 1.5);
+  list-style: none;
+}
+
+.breadcrumb-navigation-item-title {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(0.25rem * 1.5);
+  font-size: 0.875rem;
+  line-height: 1.48257;
+  color: #667085;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.breadcrumb-navigation-item-current {
+  font-size: 0.875rem;
+  line-height: 1.48257;
+  color: #1d2939;
+}
