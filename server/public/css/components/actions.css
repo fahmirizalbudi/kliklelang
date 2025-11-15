@@ -5,8 +5,8 @@
   justify-content: center;
   font-weight: 400;
   gap: 6px;
-  font-size: 0.95rem;
-  line-height: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   flex-shrink: 0;
   color: #115dfc;
   text-decoration: none;
@@ -22,8 +22,8 @@
   justify-content: center;
   font-weight: 400;
   gap: 6px;
-  font-size: 0.95rem;
-  line-height: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.25rem;
   flex-shrink: 0;
   color: #e7000b;
   text-decoration: none;
