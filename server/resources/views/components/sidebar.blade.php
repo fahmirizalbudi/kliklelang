@@ -12,7 +12,7 @@
       </x-sidebar-group>
 
       <x-sidebar-group title="Master Data">
-        <x-sidebar-item text="Admin & Petugas" icon="admin_petugas" />
+        <x-sidebar-item text="Petugas" icon="admin_petugas" linkTo="{{ route('petugas.index') }}" :active="request()->is('*/petugas*')" />
         <x-sidebar-item text="Barang" icon="barang" linkTo="{{ route('barang.index') }}" :active="request()->is('*/barang*')" />
         <x-sidebar-item text="Masyarakat" icon="masyarakat" linkTo="{{ route('masyarakat.index') }}" :active="request()->is('*/masyarakat*')" />
       </x-sidebar-group>
