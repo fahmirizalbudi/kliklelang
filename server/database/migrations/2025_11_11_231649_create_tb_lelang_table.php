@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->integer('harga_akhir');
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_petugas');
-            $table->enum('status', ['0', 'dibuka', 'ditutup'])->default('0');
+            $table->enum('status', ['dibuka', 'ditutup'])->nullable();
 
             $table->foreign('id_barang')->references('id_barang')->on('tb_barang');
             $table->foreign('id_user')->references('id_user')->on('tb_masyarakat');

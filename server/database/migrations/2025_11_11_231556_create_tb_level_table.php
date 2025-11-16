@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tb_level', function (Blueprint $table) {
             $table->id('id_level');
-            $table->enum('level', ['administrator', 'lelang']);
+            $table->enum('level', ['administrator', 'petugas']);
             $table->timestamps();
         });
     }
