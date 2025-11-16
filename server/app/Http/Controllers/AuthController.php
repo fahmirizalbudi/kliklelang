@@ -22,7 +22,7 @@ class AuthController extends Controller
         }
 
         $request->session()->regenerate();
-        return redirect()->intended('/');
+        return redirect()->intended(route('home'));
     }
 
     public function login_masyarakat(Request $request)

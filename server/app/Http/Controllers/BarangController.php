@@ -13,12 +13,12 @@ class BarangController extends Controller
     {
         $search = $request->input('search');
         $daftarBarang = Barang::where('nama_barang', 'like', "%$search%")->paginate(7);
-        return view('petugas.barang.index', compact('daftarBarang'));
+        return view('dashboard.barang.index', compact('daftarBarang'));
     }
 
     public function create()
     {
-        return view('petugas.barang.create');
+        return view('dashboard.barang.create');
     }
 
     public function store(BarangRequest $request)
@@ -41,7 +41,7 @@ class BarangController extends Controller
 
     public function edit(Barang $barang)
     {
-        return view('petugas.barang.edit', compact('barang'));
+        return view('dashboard.barang.edit', compact('barang'));
     }
 
     public function update(BarangRequest $request, Barang $barang)

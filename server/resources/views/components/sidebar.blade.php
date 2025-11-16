@@ -8,7 +8,7 @@
   <div class="sidebar-content">
     <nav class="sidebar-menus">
       <x-sidebar-group title="Main">
-        <x-sidebar-item text="Beranda" icon="beranda" :active="request()->is('*/home')" />
+        <x-sidebar-item text="Beranda" icon="beranda" linkTo="{{ route('home') }}" :active="request()->is('dashboard')" />
       </x-sidebar-group>
 
       <x-sidebar-group title="Master Data">

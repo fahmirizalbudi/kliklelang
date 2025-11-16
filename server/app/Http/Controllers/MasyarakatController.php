@@ -13,12 +13,12 @@ class MasyarakatController extends Controller
     {
         $search = $request->input('search');
         $daftarMasyarakat = Masyarakat::where('nama_lengkap', 'like', "%$search%")->orWhere('username', 'like', "%$search%")->paginate(10);
-        return view('petugas.masyarakat.index', compact('daftarMasyarakat'));
+        return view('dashboard.masyarakat.index', compact('daftarMasyarakat'));
     }
 
     public function create()
     {
-        return view('petugas.masyarakat.create');
+        return view('dashboard.masyarakat.create');
     }
 
     public function store(MasyarakatRequest $request)
@@ -33,7 +33,7 @@ class MasyarakatController extends Controller
 
     public function edit(Masyarakat $masyarakat)
     {
-        return view('petugas.masyarakat.edit', compact('masyarakat'));
+        return view('dashboard.masyarakat.edit', compact('masyarakat'));
     }
 
     public function update(MasyarakatRequest $request, Masyarakat $masyarakat)

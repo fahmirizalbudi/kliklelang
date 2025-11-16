@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MasyarakatController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,8 @@ Route::prefix('auth')->group(function () {
   });
 });
 
-Route::prefix('petugas')->group(function () {
+Route::prefix('dashboard')->group(function () {
+  Route::get('/', HomeController::class)->name('home');
   Route::resource('barang', BarangController::class)->except('show');
   Route::resource('masyarakat', MasyarakatController::class)->except('show');
 });
