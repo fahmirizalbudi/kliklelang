@@ -24,3 +24,12 @@ body.petugas {
   background-color: #fff !important;
   color: rgb(15, 23, 42) !important;
 }
+
+option {
+  text-transform: capitalize;
+  color: #1f2937;
+}
+
+option.placeholder {
+  text-transform: none;
+}
