@@ -51,5 +51,5 @@
 @endsection
 
 @push('styles')
-  <link rel="stylesheet" href="{{ asset('css/pages/petugas/barang/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/pages/dashboard/barang/style.css') }}">
 @endpush

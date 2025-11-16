@@ -54,5 +54,5 @@
 @endsection
 
 @push('styles')
-  <link rel="stylesheet" href="{{ asset('css/pages/petugas/masyarakat/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/pages/dashboard/masyarakat/style.css') }}">
 @endpush
