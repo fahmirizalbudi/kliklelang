@@ -42,7 +42,7 @@
               <x-select-field name="id_level" placeholder="Pilih level e.g (administrator, petugas)" defaultValue="{{ old('id_level') }}">
                 @foreach ($daftarLevel as $level)
                   <option value="{{ $level->id_level }}">{{ $level->level }}</option>
-                @endforeach#
+                @endforeach
               </x-select-field>
               @error('id_level')
                 <x-message asError text="{{ $message }}"></x-message>

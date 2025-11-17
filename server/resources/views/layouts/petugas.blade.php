@@ -18,7 +18,8 @@
   <link rel="stylesheet" href="{{ asset('css/components/label-field.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/pagination.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/message.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/components/select-field.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/overview-card.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendor/dynamic-select/dynamic-select.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/flasher/flasher.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/flasher/flasher-sweetalert.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/sweetalert2/sweetalert2.min.css') }}">
@@ -38,6 +39,7 @@
   <script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>
   <script src="{{ asset('vendor/flasher/flasher-sweetalert.min.js') }}"></script>
   <script src="{{ asset('vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
+  <script src="{{ asset('vendor/dynamic-select/dynamic-select.js') }}"></script>
   @stack('scripts')
 </body>
 

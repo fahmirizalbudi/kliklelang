@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Data\LelangOverviewCard;
+use App\Models\Barang;
+use App\Models\Lelang;
+use Auth;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+
+class LelangController extends Controller
+{
+    private $filterItems;
+    private $items;
+
+    public function __construct(LelangOverviewCard $overview, Lelang $lelang)
+    {
+        $this->filterItems = [
+            ['label' => 'Semua', 'value' => ''],
+            ['label' => 'Dibuka', 'value' => 'dibuka'],
+            ['label' => 'Ditutup', 'value' => 'ditutup'],
+        ];
+
+        $this->items = $overview->items();
+    }
+
+    public function index(Request $request)
+    {
+        $items = $this->items;
+        $filterItems = $this->filterItems;
+        $status = $request->input('status');
+        $petugas = Auth::guard('petugas')->user();
+        $daftarLelang = Lelang::with(['petugas', 'masyarakat', 'barang'])->where('id_petugas', $petugas->id_petugas);
+        if ($status === 'dibuka' || $status === 'ditutup') {
+            $daftarLelang->where('status', $status);
+        }
+        $daftarLelang = $daftarLelang->paginate(7);
+        return view('dashboard.lelang.index', compact('items', 'filterItems', 'daftarLelang'));
+    }
+
+    public function activation()
+    {
+        $daftarBarang = Barang::all();
+        return view('dashboard.lelang.activation', compact('daftarBarang'));
+    }
+
+    public function activate(Request $request)
+    {
+        $lelang = $request->validate([
+            'id_barang' => 'required',
+            'tgl_lelang' => 'required|date|after_or_equal:today',
+            'status' => 'required|in:dibuka,ditutup',
+        ], [
+            'id_barang.required' => 'Barang wajib diisi.',
+            'tgl_lelang.required' => 'Tanggal lelang wajib diisi.',
+            'tgl_lelang.after_or_equal' => 'Tanggal lelang harus hari ini atau tanggal berikutnya.',
+            'status.required' => 'Status wajib diisi.',
+            'status.in' => 'Status harus "dibuka" atau "ditutup".',
+        ]);
+
+        $lelang['harga_akhir'] = null;
+        $lelang['id_user'] = null;
+        $lelang['id_petugas'] = Auth::guard('petugas')->user()->id_petugas;
+
+        Lelang::create($lelang);
+        flash()->addSuccess('Lelang berhasil di-aktivasi!', 'Sukses');
+
+        return to_route('lelang.index');
+    }
+
+    public function open(Lelang $lelang)
+    {
+        $lelang->status = 'dibuka';
+        $lelang->save();
+        flash()->addSuccess('Lelang berhasil dibuka!', 'Sukses');
+        return redirect()->back();
+    }
+
+    public function close(Lelang $lelang)
+    {
+        $lelang->status = 'ditutup';
+        $lelang->save();
+        flash()->addSuccess('Lelang berhasil ditutup!', 'Sukses');
+        return redirect()->back();
+    }
+
+    public function destroy(Lelang $lelang)
+    {
+        try {
+            $lelang->delete();
+            flash()->addSuccess('Lelang berhasil dihapus!', 'Sukses');
+        } catch (QueryException $e) {
+            flash()->addError('Data ini masih digunakan di history lelang.', 'Gagal');
+        }
+        return redirect()->back();
+    }
+}

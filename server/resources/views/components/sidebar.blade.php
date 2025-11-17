@@ -18,7 +18,7 @@
       </x-sidebar-group>
 
       <x-sidebar-group title="Pelelangan">
-        <x-sidebar-item text="Lelang" icon="lelang" />
+        <x-sidebar-item text="Lelang" icon="lelang" linkTo="{{ route('lelang.index') }}" :active="request()->is('*/lelang*')" />
         <x-sidebar-item text="Histori Lelang" icon="histori_lelang" />
       </x-sidebar-group>
 

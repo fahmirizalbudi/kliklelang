@@ -12,4 +12,9 @@ class Barang extends Model
     protected $table = 'tb_barang';
     protected $primaryKey = 'id_barang';
     protected $fillable = ['nama_barang', 'tgl', 'harga_awal', 'deskripsi_barang', 'foto_barang'];
+
+    public function lelang()
+    {
+        return $this->hasOne(Lelang::class, 'id_barang', 'id_barang');
+    }
 }

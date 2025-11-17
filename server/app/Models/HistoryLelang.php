@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class HistoryLelang extends Model
 {
     use HasFactory;
+
+    protected $table = 'history_lelang';
+    protected $primaryKey = 'id_history';
+    protected $guarded = ['id_history'];
 }

@@ -12,4 +12,9 @@ class Masyarakat extends Model
     protected $table = 'tb_masyarakat';
     protected $primaryKey = 'id_user';
     protected $fillable = ['nama_lengkap', 'username', 'password', 'telp'];
+
+    public function lelang()
+    {
+        return $this->hasMany(Lelang::class, 'id_user', 'id_user');
+    }
 }
