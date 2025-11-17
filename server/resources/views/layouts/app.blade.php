@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{{ asset('css/components/text-field.css') }}">
   <link rel="stylesheet" href="{{ asset('css/components/label-field.css') }}">
   <link rel="stylesheet" href="{{ asset('css/layouts/includes/feed.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendor/dynamic-select/dynamic-select.css') }}">
   <link rel="icon" type="image/svg+xml" href="{{ asset('brand.svg') }}">
   @stack('styles')
 </head>

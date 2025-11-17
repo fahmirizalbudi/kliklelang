@@ -79,7 +79,13 @@ class LelangController extends Controller
 
     public function close(Lelang $lelang)
     {
+        $lelang->load('historyLelang');
+
+        $pemenang = $lelang->historyLelang->sortByDesc('penawaran_harga')->first();
+
         $lelang->status = 'ditutup';
+        $lelang->harga_akhir = $pemenang->penawaran_harga;
+        $lelang->id_user = $pemenang->id_user;
         $lelang->save();
         flash()->addSuccess('Lelang berhasil ditutup!', 'Sukses');
         return redirect()->back();

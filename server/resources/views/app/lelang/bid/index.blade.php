@@ -43,17 +43,19 @@
             {{ $lelang->status }}</span>
         </div>
 
-        <form class="detail-lelang-bid-action" action="{{ route('app.lelang.bidding', $lelang) }}" method="POST">
-          @csrf
-          <div>
-            <x-label-field forField="penawaran_harga">Penawaran Harga</x-label-field>
-            <x-text-field type="number" name="penawaran_harga"
-              placeholder="Masukkan penawaran (min. Rp {{ number_format($lelang->historyLelang->count() > 0 ? $lelang->historyLelang->max('penawaran_harga') : $lelang->barang->harga_awal, 0, '.', '.') }})"
-              defaultValue="{{ old('penawaran_harga') }}"></x-text-field>
-          </div>
+        @if ($lelang->status === 'dibuka')
+          <form class="detail-lelang-bid-action" action="{{ route('app.lelang.bidding', $lelang) }}" method="POST">
+            @csrf
+            <div>
+              <x-label-field forField="penawaran_harga">Penawaran Harga</x-label-field>
+              <x-text-field type="number" name="penawaran_harga"
+                placeholder="Masukkan penawaran (min. Rp {{ number_format($lelang->historyLelang->count() > 0 ? $lelang->historyLelang->max('penawaran_harga') : $lelang->barang->harga_awal, 0, '.', '.') }})"
+                defaultValue="{{ old('penawaran_harga') }}"></x-text-field>
+            </div>
 
-          <button type="submit" class="bid-submit">Ajukan Penawaran</button>
-        </form>
+            <button type="submit" class="bid-submit">Ajukan Penawaran</button>
+          </form>
+        @endif
 
         @if ($lelang->status === 'ditutup')
           @php
@@ -65,9 +67,10 @@
             <x-select-field name="pemenang" placeholder="No placeholder" defaultValue="{{ $pemenang->masyarakat->id_user }}"
               disabled>
               @foreach ($lelang->historyLelang->sortByDesc('penawaran_harga') as $item)
-                <option data-img="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                  value="{{ $item->masyarakat->id_user }}">{{ $item->masyarakat->nama_lengkap }} -
-                  {{ $item->masyarakat->username }}</option>
+                <option value="{{ $item->masyarakat->id_user }}"
+                  data-img="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                  data-html="@<span style='text-transform: none'>{{ $item->masyarakat->username }}</span> ~ &nbsp; <span>{{ $item->masyarakat->nama_lengkap }}</span>">
+                </option>
               @endforeach
             </x-select-field>
           </div>
