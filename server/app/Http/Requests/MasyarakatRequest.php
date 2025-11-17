@@ -32,6 +32,7 @@ class MasyarakatRequest extends FormRequest
             ],
             'password' => $masyarakat ? 'nullable' : 'required',
             'telp' => 'required',
+            'alamat' => 'required',
         ];
     }
 
@@ -43,6 +44,7 @@ class MasyarakatRequest extends FormRequest
             'username.unique' => 'Username sudah digunakan, silakan pilih yang lain.',
             'password.required' => 'Password wajib diisi.',
             'telp.required' => 'Telepon wajib diisi.',
+            'alamat.required' => 'Alamat wajib diisi.',
         ];
     }
 }

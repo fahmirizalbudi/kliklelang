@@ -25,6 +25,13 @@
                 <x-message asError text="{{ $message }}"></x-message>
               @enderror
             </div>
+            <div class="alamat-masyarakat-group">
+              <x-label-field forField="masyarakat">Alamat</x-label-field>
+              <textarea name="alamat" rows="7" id="alamat" placeholder="Masukkan alamat">{{ old('alamat') }}</textarea>
+              @error('alamat')
+                <x-message asError text="{{ $message }}"></x-message>
+              @enderror
+            </div>
           </div>
         </x-form-card>
         <x-form-card title="Akun Masyarakat">

@@ -27,6 +27,8 @@ Route::prefix('dashboard')->group(function () {
   ]);
   Route::resource('barang', BarangController::class)->except('show');
   Route::resource('masyarakat', MasyarakatController::class)->except('show');
+  Route::patch('masyarakat/{masyarakat}/block', [MasyarakatController::class, 'block'])->name('masyarakat.block');
+  Route::patch('masyarakat/{masyarakat}/unblock', [MasyarakatController::class, 'unblock'])->name('masyarakat.unblock');
   Route::prefix('lelang')->group(function () {
     Route::get(INDEX_PATH, [LelangController::class, 'index'])->name('lelang.index');
     Route::get('activation', [LelangController::class, 'activation'])->name('lelang.activation');

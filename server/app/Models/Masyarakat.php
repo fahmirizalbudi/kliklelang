@@ -11,7 +11,7 @@ class Masyarakat extends Model
 
     protected $table = 'tb_masyarakat';
     protected $primaryKey = 'id_user';
-    protected $fillable = ['nama_lengkap', 'username', 'password', 'telp'];
+    protected $fillable = ['nama_lengkap', 'username', 'password', 'telp', 'alamat', 'status'];
 
     public function lelang()
     {

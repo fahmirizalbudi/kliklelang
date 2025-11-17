@@ -44,10 +44,27 @@ class MasyarakatController extends Controller
         $masyarakat->nama_lengkap = $request->nama_lengkap;
         $masyarakat->username = $request->username;
         $masyarakat->telp = $request->telp;
+        $masyarakat->alamat = $request->alamat;
         $masyarakat->save();
 
         flash()->addSuccess('Masyarakat berhasil diperbarui!', 'Sukses');
         return to_route('masyarakat.index');
+    }
+
+    public function block(Masyarakat $masyarakat)
+    {
+        $masyarakat->status = 'blokir';
+        $masyarakat->save();
+        flash()->addSuccess('Masyarakat berhasil diblokir!', 'Sukses');
+        return redirect()->back();
+    }
+
+    public function unblock(Masyarakat $masyarakat)
+    {
+        $masyarakat->status = 'aktif';
+        $masyarakat->save();
+        flash()->addSuccess('Masyarakat berhasil di-unblokir!', 'Sukses');
+        return redirect()->back();
     }
 
     public function destroy(Masyarakat $masyarakat)

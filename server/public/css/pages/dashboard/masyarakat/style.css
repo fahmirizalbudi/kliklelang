@@ -18,7 +18,8 @@
   gap: 1.5rem;
 }
 
-.masyarakat-info-form, .masyarakat-akun-form {
+.masyarakat-info-form,
+.masyarakat-akun-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
@@ -52,4 +53,59 @@
 
 .submit-button:hover {
   background-color: #3641f5;
+}
+
+.alamat-masyarakat-group {
+  grid-column: 1 / -1;
+}
+
+#alamat {
+  width: 100%;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  padding-left: 1rem;
+  padding-right: 3.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  background-color: transparent;
+  color: #1f2937;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  resize: none;
+}
+
+#alamat::placeholder {
+  color: #9ca3af;
+}
+
+#alamat:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.badge {
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.badge.aktif {
+  background-color: #ecfdf3;
+  color: #027a48;
+}
+
+.badge.blokir {
+  background-color: #fef3f2;
+  color: #d92d20;
+}
+
+.alamat-cell {
+  max-width: 165px;
 }
