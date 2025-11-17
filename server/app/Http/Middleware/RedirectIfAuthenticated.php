@@ -21,7 +21,14 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+
+                if ($guard === 'petugas') {
+                    return redirect()->route('petugas.dashboard');
+                }
+
+                if ($guard === 'masyarakat') {
+                    return redirect()->route('app.index');
+                }
             }
         }
 

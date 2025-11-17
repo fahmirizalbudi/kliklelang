@@ -17,8 +17,8 @@ Route::prefix('auth')->group(function () {
     Route::get('masyarakat', [AuthController::class, 'view_login'])->name('login.view.masyarakat');
     Route::post('petugas', [AuthController::class, 'login_petugas'])->name('login.petugas');
     Route::post('masyarakat', [AuthController::class, 'login_masyarakat'])->name('login.masyarakat');
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-  });
+  })->middleware(['guest:petugas', 'guest:masyarakat']);
+  Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth.any');
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -38,9 +38,11 @@ Route::prefix('dashboard')->group(function () {
     Route::patch('{lelang}/close', [LelangController::class, 'close'])->name('lelang.close');
     Route::delete('{lelang}', [LelangController::class, 'destroy'])->name('lelang.destroy');
   });
-});
+})->middleware(['auth:petugas']);
 
-Route::get(INDEX_PATH, [AppController::class, 'index'])->name('app.index');
-Route::get('lelang', [AppController::class, 'lelang'])->name('app.lelang');
-Route::get('lelang/{lelang}/bid', [AppController::class, 'lelangBid'])->name('app.lelang.bid');
-Route::post('lelang/{lelang}/bidding', [AppController::class, 'lelangBidding'])->name('app.lelang.bidding');
+Route::middleware(['auth:masyarakat'])->group(function () {
+  Route::get(INDEX_PATH, [AppController::class, 'index'])->name('app.index');
+  Route::get('lelang', [AppController::class, 'lelang'])->name('app.lelang');
+  Route::get('lelang/{lelang}/bid', [AppController::class, 'lelangBid'])->name('app.lelang.bid');
+  Route::post('lelang/{lelang}/bidding', [AppController::class, 'lelangBidding'])->name('app.lelang.bidding');
+});
