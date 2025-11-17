@@ -169,3 +169,8 @@
   line-height: 1.25rem;
   color: #1f2937;
 }
+
+.dynamic-select.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}

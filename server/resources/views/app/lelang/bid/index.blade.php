@@ -48,11 +48,30 @@
           <div>
             <x-label-field forField="penawaran_harga">Penawaran Harga</x-label-field>
             <x-text-field type="number" name="penawaran_harga"
-              placeholder="Masukkan penawaran (min. Rp {{ number_format($lelang->historyLelang->count() > 0 ? $lelang->historyLelang->max('penawaran_harga') : $lelang->barang->harga_awal, 0, '.', '.') }})" defaultValue="{{ old('penawaran_harga') }}"></x-text-field>
+              placeholder="Masukkan penawaran (min. Rp {{ number_format($lelang->historyLelang->count() > 0 ? $lelang->historyLelang->max('penawaran_harga') : $lelang->barang->harga_awal, 0, '.', '.') }})"
+              defaultValue="{{ old('penawaran_harga') }}"></x-text-field>
           </div>
 
           <button type="submit" class="bid-submit">Ajukan Penawaran</button>
         </form>
+
+        @if ($lelang->status === 'ditutup')
+          @php
+            $pemenang = $lelang->historyLelang->sortByDesc('penawaran_harga')->first();
+          @endphp
+
+          <div class="pemenang-lelang">
+            <x-label-field forField="pemenang">Pemenang Lelang</x-label-field>
+            <x-select-field name="pemenang" placeholder="No placeholder" defaultValue="{{ $pemenang->masyarakat->id_user }}"
+              disabled>
+              @foreach ($lelang->historyLelang->sortByDesc('penawaran_harga') as $item)
+                <option data-img="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                  value="{{ $item->masyarakat->id_user }}">{{ $item->masyarakat->nama_lengkap }} -
+                  {{ $item->masyarakat->username }}</option>
+              @endforeach
+            </x-select-field>
+          </div>
+        @endif
 
         @if ($lelang->historyLelang->count() > 0)
           <hr class="bid-divider">

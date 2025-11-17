@@ -42,6 +42,15 @@ class DynamicSelect {
                 });
             }
         }
+
+        if (this.options.value) {
+            this.options.data.forEach((d) => (d.selected = false));
+            let found = this.options.data.find(
+                (d) => d.value == this.options.value
+            );
+            if (found) found.selected = true;
+        }
+
         this.element = this._template();
         this.selectElement.replaceWith(this.element);
         this._updateSelected();
