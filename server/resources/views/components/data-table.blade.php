@@ -7,23 +7,25 @@
       <p class="data-table-header-description">{{ $description }}</p>
     </div>
     <div class="data-table-action">
-      <div class="data-table-toggle-filter">
-        @if (count($filterItems) > 0)
-          @foreach ($filterItems as $item)
-            <button onclick="window.location.href='{{ request()->fullUrlWithQuery(['status' => $item['value']]) }}'"
-              class="data-table-toggle-filter-button {{ request()->input('status') == $item['value'] ? 'active' : '' }}">
-              {{ $item['label'] }}
-            </button>
-          @endforeach
-        @endif
-      </div>
-      <div class="data-table-filter-table-search">
-        <div class="data-table-filter-table-search-container">
-          <form>
-            <x-text-field icon="search" placeholder="Search ..." name="search" :defaultValue="request()->input('search') ?? null"></x-text-field>
-          </form>
+      @if ($v2)
+        <div class="data-table-toggle-filter">
+          @if (count($filterItems) > 0)
+            @foreach ($filterItems as $item)
+              <button onclick="window.location.href='{{ request()->fullUrlWithQuery(['status' => $item['value']]) }}'"
+                class="data-table-toggle-filter-button {{ request()->input('status') == $item['value'] ? 'active' : '' }}">
+                {{ $item['label'] }}
+              </button>
+            @endforeach
+          @endif
         </div>
-      </div>
+        <div class="data-table-filter-table-search">
+          <div class="data-table-filter-table-search-container">
+            <form>
+              <x-text-field icon="search" placeholder="Search ..." name="search" :defaultValue="request()->input('search') ?? null"></x-text-field>
+            </form>
+          </div>
+        </div>
+      @endif
       <button class="data-table-export-button">
         Export
         <x-icon name="export"></x-icon>
