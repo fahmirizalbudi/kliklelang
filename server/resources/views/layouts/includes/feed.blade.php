@@ -33,7 +33,7 @@
         <div class="tab-list-item">
           <a href="{{ route('app.lelang') }}" class="tab-list-item-anchor">
             <li class="tab-list-content">
-              <button class="tab-list-button {{ request()->is('lelang') ? 'active' : '' }}">
+              <button class="tab-list-button {{ request()->is('lelang*') ? 'active' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
                   role="img" class="FeedAndCategoryNavigation_svg-icon-active__vCoh1 u-color-brand u-m-b-xxs u-icon-m">
                   <path fill="currentColor" d="M1.5 22h12v2h-12zm0-8.272 1.414-1.414 6.364 6.364-1.414 1.414z"></path>

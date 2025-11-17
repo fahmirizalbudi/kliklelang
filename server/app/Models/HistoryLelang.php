@@ -12,4 +12,14 @@ class HistoryLelang extends Model
     protected $table = 'history_lelang';
     protected $primaryKey = 'id_history';
     protected $guarded = ['id_history'];
+
+    public function lelang()
+    {
+        return $this->belongsTo(Lelang::class, 'id_lelang', 'id_lelang');
+    }
+
+    public function masyarakat()
+    {
+        return $this->belongsTo(Masyarakat::class, 'id_user', 'id_user');
+    }
 }

@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Masyarakat extends Model
+class Masyarakat extends Authenticatable
 {
     use HasFactory;
 
@@ -16,5 +16,10 @@ class Masyarakat extends Model
     public function lelang()
     {
         return $this->hasMany(Lelang::class, 'id_user', 'id_user');
+    }
+
+    public function historyLelang()
+    {
+        return $this->hasMany(HistoryLelang::class, 'id_user', 'id_user');
     }
 }

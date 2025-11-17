@@ -27,4 +27,10 @@ class Lelang extends Model
     {
         return $this->belongsTo(Barang::class, 'id_barang', 'id_barang');
     }
+
+
+    public function historyLelang()
+    {
+        return $this->hasMany(HistoryLelang::class, 'id_lelang', 'id_lelang');
+    }
 }

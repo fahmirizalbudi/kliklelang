@@ -8,6 +8,9 @@
   <title>@yield('title')</title>
   <link rel="stylesheet" href="{{ asset('css/global.css') }}">
   <link rel="stylesheet" href="{{ asset('css/layouts/includes/navigation.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/profile-dropdown.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/text-field.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/label-field.css') }}">
   <link rel="stylesheet" href="{{ asset('css/layouts/includes/feed.css') }}">
   <link rel="icon" type="image/svg+xml" href="{{ asset('brand.svg') }}">
   @stack('styles')
@@ -20,6 +23,7 @@
     @include('layouts.includes.feed')
     @yield('content')
   </main>
+  <script src="{{ asset('js/components/profile-dropdown.js') }}"></script>
   <script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>
   <script src="{{ asset('vendor/flasher/flasher-sweetalert.min.js') }}"></script>
   <script src="{{ asset('vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>

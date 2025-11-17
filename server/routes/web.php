@@ -42,3 +42,5 @@ Route::prefix('dashboard')->group(function () {
 
 Route::get(INDEX_PATH, [AppController::class, 'index'])->name('app.index');
 Route::get('lelang', [AppController::class, 'lelang'])->name('app.lelang');
+Route::get('lelang/{lelang}/bid', [AppController::class, 'lelangBid'])->name('app.lelang.bid');
+Route::post('lelang/{lelang}/bidding', [AppController::class, 'lelangBidding'])->name('app.lelang.bidding');
