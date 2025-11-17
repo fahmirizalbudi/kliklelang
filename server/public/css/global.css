@@ -20,6 +20,15 @@ body.petugas {
   top: 77px;
 }
 
+.main-app-v2 {
+  background-color: #fff;
+}
+
+.app-divider {
+  height: 36px;
+  background-color: #f9fafb;
+}
+
 .fl-main-container .fl-container.fl-flasher {
   background-color: #fff !important;
   color: rgb(15, 23, 42) !important;

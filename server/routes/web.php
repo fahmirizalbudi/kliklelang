@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
@@ -38,3 +39,6 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('{lelang}', [LelangController::class, 'destroy'])->name('lelang.destroy');
   });
 });
+
+Route::get(INDEX_PATH, [AppController::class, 'index'])->name('app.index');
+Route::get('lelang', [AppController::class, 'lelang'])->name('app.lelang');
