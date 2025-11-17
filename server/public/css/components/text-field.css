@@ -44,6 +44,10 @@
   color: #9ca3af;
 }
 
+.form-action-input-text[type="date"]:invalid {
+  color: #9ca3af;
+}
+
 .form-action-input-text:focus {
   outline: none;
   border-color: #93c5fd;

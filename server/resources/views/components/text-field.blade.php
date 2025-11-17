@@ -8,5 +8,5 @@
   @endif
   <input type="{{ $type }}" name="{{ $name }}" id="{{ $id ?? $name }}"
     class="form-action-input-text {{ $icon ? 'with-icon' : '' }}" placeholder="{{ $placeholder }}"
-    value="{{ $defaultValue }}">
+    value="{{ $defaultValue }}" {{ $type === 'date' ? 'required' : '' }}>
 </div>

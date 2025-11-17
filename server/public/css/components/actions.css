@@ -1,5 +1,6 @@
 .edit-action {
   cursor: pointer;
+  background-color: transparent;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +11,8 @@
   flex-shrink: 0;
   color: #115dfc;
   text-decoration: none;
+  outline: none;
+  border: none;
 }
 
 .delete-action {
@@ -26,5 +29,21 @@
   line-height: 1.25rem;
   flex-shrink: 0;
   color: #e7000b;
+  text-decoration: none;
+}
+
+.custom-action {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  gap: 6px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  flex-shrink: 0;
   text-decoration: none;
 }
