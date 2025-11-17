@@ -7,6 +7,7 @@
     <section>
       <form action="{{ route('petugas.update', $petugas) }}" method="POST" class="petugas-form" novalidate>
         @csrf
+        @method('PUT')
         <x-form-card title="Informasi Petugas">
           <div class="petugas-info-form">
             <div class="petugas-name">
@@ -40,7 +41,7 @@
                 defaultValue="{{ $petugas->id_level }}">
                 @foreach ($daftarLevel as $level)
                   <option value="{{ $level->id_level }}">{{ $level->level }}</option>
-                @endforeach#
+                @endforeach
               </x-select-field>
               @error('id_level')
                 <x-message asError text="{{ $message }}"></x-message>
