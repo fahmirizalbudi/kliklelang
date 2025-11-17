@@ -25,9 +25,16 @@ class AuthController extends Controller
         return redirect()->intended(route('home'));
     }
 
-    public function login_masyarakat(Request $request)
+    public function login_masyarakat(LoginRequest $request)
     {
-        dd('masyarakat');
+        $credentials = $request->validated();
+        if (!Auth::guard('masyarakat')->attempt($credentials)) {
+            sweetalert()->addError('Username atau password salah. Silakan coba lagi.', 'Login Gagal');
+            return redirect()->back()->withInput();
+        }
+
+        $request->session()->regenerate();
+        return redirect()->intended(route('app.index'));
     }
 
     public function logout(Request $request)

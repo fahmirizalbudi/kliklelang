@@ -1,7 +1,12 @@
 <div class="profile-dropdown">
   <div class="profile-header">
-    <span>{{ auth()->guard('petugas')->user()->nama_petugas }}</span><br>
-    <span>{{ auth()->guard('petugas')->user()->username }}</span>
+    @if (auth()->guard('petugas')->check())
+      <span>{{ auth()->guard('petugas')->user()->nama_petugas }}</span><br>
+      <span>{{ auth()->guard('petugas')->user()->username }}</span>
+    @else
+      <span>{{ auth()->guard('masyarakat')->user()->nama_lengkap }}</span><br>
+      <span>{{ auth()->guard('masyarakat')->user()->username }}</span>
+    @endif
   </div>
 
   <div class="profile-list">
