@@ -16,7 +16,7 @@ class AppController extends Controller
 
     public function lelang()
     {
-        $daftarLelang = Lelang::with(['historyLelang', 'barang'])->get();
+        $daftarLelang = Lelang::with(['historyLelang', 'barang'])->where('status', 'dibuka')->get();
         return view('app.lelang.index', compact('daftarLelang'));
     }
 
