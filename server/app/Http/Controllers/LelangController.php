@@ -72,6 +72,8 @@ class LelangController extends Controller
     public function open(Lelang $lelang)
     {
         $lelang->status = 'dibuka';
+        $lelang->id_user = null;
+        $lelang->harga_akhir = null;
         $lelang->save();
         flash()->addSuccess('Lelang berhasil dibuka!', 'Sukses');
         return redirect()->back();
