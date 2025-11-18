@@ -14,6 +14,8 @@
     });
 
 
-    document.querySelector('#{{ $id ?? $name }}').classList.add('disabled');
+    @if ($disabled)
+      document.querySelector('#{{ $id ?? $name }}').classList.add('disabled');
+    @endif
   </script>
 @endpush
