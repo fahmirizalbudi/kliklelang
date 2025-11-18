@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\HistoryLelangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LelangController;
 use App\Http\Controllers\MasyarakatController;
@@ -34,6 +35,7 @@ Route::prefix('dashboard')->middleware('auth:petugas')->group(function () {
     Route::get(INDEX_PATH, [LelangController::class, 'index'])->name('lelang.index');
     Route::get('{lelang}/detail', [LelangController::class, 'detail'])->name('lelang.detail');
     Route::get('activation', [LelangController::class, 'activation'])->name('lelang.activation');
+    Route::get('histori', HistoryLelangController::class)->name('lelang.history');
     Route::post('activate', [LelangController::class, 'activate'])->name('lelang.activate');
     Route::patch('{lelang}/open', [LelangController::class, 'open'])->name('lelang.open');
     Route::patch('{lelang}/close', [LelangController::class, 'close'])->name('lelang.close');

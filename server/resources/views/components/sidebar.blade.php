@@ -28,8 +28,9 @@
       @if (auth()->guard('petugas')->user()->level->level === 'petugas')
         <x-sidebar-group title="Pelelangan">
           <x-sidebar-item text="Lelang" icon="lelang" linkTo="{{ route('lelang.index') }}"
-            :active="request()->is('*/lelang*')" />
-          <x-sidebar-item text="Histori Lelang" icon="histori_lelang" />
+            :active="(request()->is('*/lelang*') && request()->path() !== 'dashboard/lelang/histori')" />
+          <x-sidebar-item text="Histori Lelang" icon="histori_lelang" linkTo="{{ route('lelang.history') }}"
+            :active="request()->path() === 'dashboard/lelang/histori'" />
         </x-sidebar-group>
       @endif
 
