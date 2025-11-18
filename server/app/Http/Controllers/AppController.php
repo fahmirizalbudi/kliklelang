@@ -54,4 +54,16 @@ class AppController extends Controller
         flash()->addSuccess('Penawaran berhasil diajukan!');
         return redirect()->back();
     }
+
+    public function history()
+    {
+        $masyarakat = Auth::guard('masyarakat')->user();
+        $daftarLelang = Lelang::with(['barang', 'masyarakat', 'historyLelang'])
+            ->whereHas('historyLelang', function ($query) use ($masyarakat) {
+                $query->where('id_user', $masyarakat->id_user);
+            })
+            ->get();
+
+        return view('app.lelang.riwayat.index', compact('daftarLelang'));
+    }
 }

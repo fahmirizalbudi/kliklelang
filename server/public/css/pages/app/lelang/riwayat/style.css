@@ -1,0 +1,88 @@
+#riwayat-lelang {
+  width: 100%;
+  max-width: 1224px;
+  margin: 0 auto;
+  padding-top: 34px;
+  padding-bottom: 48px;
+}
+
+.riwayat-lelang-header {
+  display: flex;
+}
+
+.riwayat-lelang-header-text {
+  font-weight: 500;
+  font-size: 1.1875rem;
+  line-height: 1.2352941176;
+  color: #1d2939;
+}
+
+.riwayat-lelang-barang-container {
+  margin-top: 24px;
+}
+
+.riwayat-lelang-barang-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  row-gap: 40px;
+  list-style: none;
+}
+
+.barang-list-inner {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+}
+
+.barang-list-image {
+  width: 100%;
+  height: 356px;
+}
+
+.barang-list-image img {
+  overflow: hidden;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+}
+
+.barang-list-content {
+  width: 100%;
+}
+
+.barang-name {
+  line-height: 1.3125rem;
+  margin-top: .625rem;
+  color: #1d2939;
+  font-weight: 500;
+  font-size: 1.0625rem;
+}
+
+.barang-status-start-bid,
+.barang-status-current-bid {
+  margin-top: .75rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: .8rem;
+  line-height: 1.1818181818;
+  letter-spacing: .0625rem;
+  font-family: monospace;
+  color: #565b60;
+}
+
+.barang-bid,
+.barang-status {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.barang-start-bid,
+.barang-current-bid {
+  margin-top: .25rem;
+  font-weight: 500;
+  font-size: 1.1875rem;
+  line-height: 1.2631578947;
+  color: #1d2939;
+}

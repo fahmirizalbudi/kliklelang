@@ -90,9 +90,9 @@
           </a>
         </div>
         <div class="tab-list-item">
-          <a href="#" class="tab-list-item-anchor">
+          <a href="{{ route('app.history') }}" class="tab-list-item-anchor">
             <li class="tab-list-content">
-              <button class="tab-list-button">
+              <button class="tab-list-button {{ request()->is('history*') ? 'active' : '' }}">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M9.74902 2.75C9.74902 2.33579 10.0848 2 10.499 2H13.499C13.9132 2 14.249 2.33579 14.249 2.75C14.249 3.16421 13.9132 3.5 13.499 3.5H10.499C10.0848 3.5 9.74902 3.16421 9.74902 2.75Z"
