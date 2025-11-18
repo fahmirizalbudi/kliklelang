@@ -33,7 +33,14 @@
         </div>
         <div class="detail-lelang-bid-info">
           <p class="barang-lelang-status-current-bid">
-            Penawaran ↗
+            HARGA AWAL
+          </p>
+          <p class="barang-lelang-current-bid">
+            Rp
+            {{ number_format($lelang->barang->harga_awal, 0, '.', '.') }}
+          </p>
+          <p class="barang-lelang-status-current-bid">
+            Penawaran Tertinggi ↗
           </p>
           <p class="barang-lelang-current-bid">
             Rp

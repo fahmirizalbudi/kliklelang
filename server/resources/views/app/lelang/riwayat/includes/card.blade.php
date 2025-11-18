@@ -12,7 +12,7 @@
             Harga Awal
           </p>
           <p class="barang-status-current-bid">
-            Harga Akhir ↗
+            {{ $lelang->status === 'ditutup' ? 'Harga Akhir ↗' : 'Penawaran ↗' }}
           </p>
         </div>
         <div class="barang-bid">
