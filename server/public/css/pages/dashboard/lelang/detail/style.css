@@ -1,0 +1,192 @@
+.lelang-detail {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: calc(0.25rem * 6) calc(0.25rem * 5);
+}
+
+.page-divider>*+* {
+  margin-block: 1.5rem;
+}
+
+.card-detail {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #e4e7ec;
+  border-radius: 1rem;
+}
+
+.card-detail-left {
+  display: flex;
+  align-items: center;
+}
+
+.card-detail-left>*+* {
+  border-top: none;
+  border-left: 1px solid #d1d5db;
+}
+
+.lelang-detail-field {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.lelang-id {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border-radius: 9999px;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.badge.dibuka {
+  background-color: #ecfdf3;
+  color: #027a48;
+}
+
+.badge.ditutup {
+  background-color: #fef3f2;
+  color: #d92d20;
+}
+
+.lelang-date {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #6b7280;
+  padding-left: 0.75rem;
+}
+
+.card-detail-right {
+  display: flex;
+  align-items: center;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6875rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border: 0.1px solid #d1d5db;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.grid-lelang-detail {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.grid-lelang-detail-left {
+  grid-column: span 9 / span 9;
+}
+
+.grid-lelang-detail-left>*+* {
+  margin-block: 1.5rem;
+}
+
+.barang-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.barang-preview {
+  width: calc(0.25rem * 12);
+  height: calc(0.25rem * 12);
+}
+
+.barang-preview-image {
+  width: calc(0.25rem * 12);
+  height: calc(0.25rem * 12);
+  border-radius: 0.375rem;
+}
+
+.barang-text {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #344054;
+}
+
+.barang-description {
+  max-width: 340px;
+}
+
+.grid-lelang-detail-right {
+  grid-column: span 3 / span 3;
+}
+
+.grid-lelang-detail-right>*+* {
+  margin-block: 1.5rem;
+}
+
+.winner-detail {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  padding: 1.5rem;
+}
+
+.winner-detail-text {
+  margin-bottom: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #1d2939;
+}
+
+.winner-detail-list>*+* {
+  border-top: 1px solid #f3f4f6;
+}
+
+.winner-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  list-style: none;
+  padding-block: calc(0.25rem * 2.5);
+}
+
+.winner-detail-key {
+  width: 66.666666%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #6b7280;
+}
+
+.winner-detail-value {
+  width: 33.333333%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #6b7280;
+  text-align: right;
+}

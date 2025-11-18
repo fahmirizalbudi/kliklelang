@@ -1,4 +1,4 @@
-@props(['title', 'description', 'withAdd' => '', 'withAddText' => '', 'rowHeaders', 'v2' => false, 'filterItems' => []])
+@props(['title', 'description', 'withAdd' => '', 'withAddText' => '', 'rowHeaders', 'v2' => false, 'filterItems' => [], 'withoutFooter' => false, 'withoutOptional' => false])
 
 <div class="data-table">
   <div class="data-table-top">
@@ -8,28 +8,32 @@
     </div>
     <div class="data-table-action">
       @if ($v2)
-        <div class="data-table-toggle-filter">
-          @if (count($filterItems) > 0)
+        @if (count($filterItems) > 0)
+          <div class="data-table-toggle-filter">
             @foreach ($filterItems as $item)
               <button onclick="window.location.href='{{ request()->fullUrlWithQuery(['status' => $item['value']]) }}'"
                 class="data-table-toggle-filter-button {{ request()->input('status') == $item['value'] ? 'active' : '' }}">
                 {{ $item['label'] }}
               </button>
             @endforeach
-          @endif
-        </div>
-        <div class="data-table-filter-table-search">
-          <div class="data-table-filter-table-search-container">
-            <form>
-              <x-text-field icon="search" placeholder="Search ..." name="search" :defaultValue="request()->input('search') ?? null"></x-text-field>
-            </form>
           </div>
-        </div>
+        @endif
+        @if (!$withoutOptional)
+          <div class="data-table-filter-table-search">
+            <div class="data-table-filter-table-search-container">
+              <form>
+                <x-text-field icon="search" placeholder="Search ..." name="search" :defaultValue="request()->input('search') ?? null"></x-text-field>
+              </form>
+            </div>
+          </div>
+        @endif
       @endif
-      <button class="data-table-export-button">
-        Export
-        <x-icon name="export"></x-icon>
-      </button>
+      @if (!$withoutOptional)
+        <button class="data-table-export-button">
+          Export
+          <x-icon name="export"></x-icon>
+        </button>
+      @endif
       @if ($withAdd)
         <a href="{{ $withAdd }}" class="data-table-add-button">
           <x-icon name="add"></x-icon>
@@ -72,9 +76,11 @@
       </tbody>
     </table>
   </div>
-  <div class="data-table-footer">
-    {{ $footer }}
-  </div>
+  @if (!$withoutFooter)
+    <div class="data-table-footer">
+      {{ $footer }}
+    </div>
+  @endif
 </div>
 
 @push('scripts')

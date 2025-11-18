@@ -44,6 +44,9 @@
             </x-cell>
             <x-cell>
               <div class="lelang-actions">
+                <x-custom-action icon="detail_lelang" color="#475467" actionTo="{{ route('lelang.detail', $lelang) }}"
+                  method="GET">Detail
+                  Lelang</x-custom-action>
                 @if ($lelang->status === 'dibuka')
                   <x-custom-action icon="tutup_lelang" color="#d92d20" actionTo="{{ route('lelang.close', $lelang) }}"
                     method="PATCH">Tutup

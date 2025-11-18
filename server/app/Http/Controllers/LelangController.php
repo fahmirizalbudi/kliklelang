@@ -81,14 +81,22 @@ class LelangController extends Controller
     {
         $lelang->load('historyLelang');
 
-        $pemenang = $lelang->historyLelang->sortByDesc('penawaran_harga')->first();
+        if ($lelang->historyLelang->count() > 0) {
+            $pemenang = $lelang->historyLelang->sortByDesc('penawaran_harga')->first();
+            $lelang->harga_akhir = $pemenang->penawaran_harga;
+            $lelang->id_user = $pemenang->id_user;
+        }
 
         $lelang->status = 'ditutup';
-        $lelang->harga_akhir = $pemenang->penawaran_harga;
-        $lelang->id_user = $pemenang->id_user;
         $lelang->save();
         flash()->addSuccess('Lelang berhasil ditutup!', 'Sukses');
         return redirect()->back();
+    }
+
+    public function detail(Lelang $lelang)
+    {
+        $lelang->load(['barang', 'historyLelang.masyarakat']);
+        return view('dashboard.lelang.detail.index', compact('lelang'));
     }
 
     public function destroy(Lelang $lelang)
