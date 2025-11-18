@@ -27,3 +27,8 @@
   font-weight: 500;
   color: #344054;
 }
+
+.idLelang:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

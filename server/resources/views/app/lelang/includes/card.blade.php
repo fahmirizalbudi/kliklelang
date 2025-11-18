@@ -1,4 +1,4 @@
-<li class="barang-list-container">
+<li class="barang-list-container" data-barang="{{ $lelang->barang->nama_barang }}">
   <article>
     <a href="{{ route('app.lelang.bid', $lelang) }}" class="barang-list-inner">
       <div class="barang-list-image">

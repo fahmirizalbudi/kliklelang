@@ -42,6 +42,7 @@
 }
 
 .barang-list-image img {
+  object-fit: cover;
   overflow: hidden;
   border-radius: 4px;
   width: 100%;

@@ -14,7 +14,7 @@
               <p class="default-cell-text" style="color: #667085">{{ $histories->firstItem() + $loop->index }}</p>
             </x-cell>
             <x-cell>
-              <p class="default-cell-text" style="font-weight: 500">#{{ $history->lelang->id_lelang }}</p>
+              <p onclick="window.location.href = '{{ route('lelang.detail', $history->lelang) }}'" class="default-cell-text idLelang" style="font-weight: 500">#{{ $history->lelang->id_lelang }}</p>
             </x-cell>
             <x-cell>
               <div class="barang-cell">
