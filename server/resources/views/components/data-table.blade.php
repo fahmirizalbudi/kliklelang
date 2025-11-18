@@ -1,4 +1,4 @@
-@props(['title', 'description', 'withAdd' => '', 'withAddText' => '', 'rowHeaders', 'v2' => false, 'filterItems' => [], 'withoutFooter' => false, 'withoutOptional' => false])
+@props(['title', 'description', 'withAdd' => '', 'withAddText' => '', 'rowHeaders', 'v2' => false, 'filterItems' => [], 'withoutFooter' => false, 'withoutOptional' => false, 'export' => null])
 
 <div class="data-table">
   <div class="data-table-top">
@@ -29,7 +29,7 @@
         @endif
       @endif
       @if (!$withoutOptional)
-        <button class="data-table-export-button">
+        <button class="data-table-export-button" onclick="window.location.href = '{{ $export }}'">
           Export
           <x-icon name="export"></x-icon>
         </button>

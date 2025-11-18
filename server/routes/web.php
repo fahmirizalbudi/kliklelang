@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HistoryLelangController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LelangController;
 use App\Http\Controllers\MasyarakatController;
 use App\Http\Controllers\PetugasController;
@@ -31,6 +32,8 @@ Route::prefix('dashboard')->middleware('auth:petugas')->group(function () {
   Route::resource('masyarakat', MasyarakatController::class)->except('show');
   Route::patch('masyarakat/{masyarakat}/block', [MasyarakatController::class, 'block'])->name('masyarakat.block');
   Route::patch('masyarakat/{masyarakat}/unblock', [MasyarakatController::class, 'unblock'])->name('masyarakat.unblock');
+  Route::get('laporan/pemenang', [LaporanController::class, 'pemenang'])->name('laporan.pemenang');
+  Route::get('laporan/pemenang/export', [LaporanController::class, 'pemenangExport'])->name('laporan.pemenang.export');
   Route::prefix('lelang')->group(function () {
     Route::get(INDEX_PATH, [LelangController::class, 'index'])->name('lelang.index');
     Route::get('{lelang}/detail', [LelangController::class, 'detail'])->name('lelang.detail');

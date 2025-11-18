@@ -1,0 +1,29 @@
+.pemenang {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: calc(0.25rem * 6) calc(0.25rem * 5);
+}
+
+.barang-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.barang-preview {
+  width: calc(0.25rem * 12);
+  height: calc(0.25rem * 12);
+}
+
+.barang-preview-image {
+  width: calc(0.25rem * 12);
+  height: calc(0.25rem * 12);
+  border-radius: 0.375rem;
+}
+
+.barang-text {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #344054;
+}

@@ -35,7 +35,8 @@
       @endif
 
       <x-sidebar-group title="Rekap">
-        <x-sidebar-item text="Laporan" icon="laporan" />
+        <x-sidebar-item text="Laporan" icon="laporan" linkTo="{{ route('laporan.pemenang') }}"
+          :active="request()->path() === 'dashboard/laporan/pemenang'" />
       </x-sidebar-group>
 
       <x-sidebar-group title="Lainnya">

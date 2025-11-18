@@ -27,7 +27,7 @@
               </div>
             </x-cell>
             <x-cell>
-              <p class="default-cell-text">{{ $history->lelang->masyarakat->nama_lengkap }}</p>
+              <p class="default-cell-text">{{ $history->masyarakat->nama_lengkap }}</p>
             </x-cell>
             <x-cell>
               <p class="default-cell-text">Rp {{ number_format($history->penawaran_harga, 0, '.', '.') }}</p>
