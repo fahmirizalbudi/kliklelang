@@ -1,4 +1,4 @@
-<li class="barang-list-container">
+<li class="barang-list-container" data-barang="{{ $lelang->barang->nama_barang }}">
   <article class="lelang-card">
     @if ($lelang->status === 'ditutup' && $userBid)
       @if ($userBid == $highestBid)
