@@ -28,9 +28,9 @@
                 :defaultValue="old('nama_lengkap')"></x-text-field>
             </x-text-field-group>
             <x-text-field-group>
-              <x-text-field-label text="Username" for="username" required></x-text-field-label>
-              <x-text-field placeholder="Masukkan username anda ..." name="username"
-                :defaultValue="old('username')"></x-text-field>
+              <x-text-field-label text="No Induk (NIK)" for="username" required></x-text-field-label>
+              <x-text-field placeholder="Masukkan no induk anda ..." name="username" :defaultValue="old('username')"
+                max="16"></x-text-field>
             </x-text-field-group>
             <x-text-field-group>
               <x-text-field-label text="Password" for="password" required></x-text-field-label>

@@ -26,8 +26,8 @@
             class="login-form-inner-body-action">
             @csrf
             <x-text-field-group>
-              <x-text-field-label text="Username" for="username" required></x-text-field-label>
-              <x-text-field icon="username" placeholder="Masukkan username anda ..." name="username"
+              <x-text-field-label :text="request()->is('auth/login/petugas') ? 'Username' : 'No Induk (NIK)'" for="username" required></x-text-field-label>
+              <x-text-field icon="username" placeholder="Masukkan {{ request()->is('auth/login/petugas') ? 'username' : 'nik' }} anda ..." name="username"
                 :defaultValue="old('username')"></x-text-field>
             </x-text-field-group>
             <x-text-field-group>

@@ -1,4 +1,4 @@
-@props(['icon' => null, 'placeholder', 'type' => 'text', 'name', 'id' => null, 'defaultValue' => null])
+@props(['icon' => null, 'placeholder', 'type' => 'text', 'name', 'id' => null, 'defaultValue' => null, 'max' => null])
 
 <div class="form-action-input">
   @if ($icon)
@@ -8,5 +8,5 @@
   @endif
   <input type="{{ $type }}" name="{{ $name }}" id="{{ $id ?? $name }}"
     class="form-action-input-text {{ $icon ? 'with-icon' : '' }}" placeholder="{{ $placeholder }}"
-    value="{{ $defaultValue }}" {{ $type === 'date' ? 'required' : '' }}>
+    value="{{ $defaultValue }}" {{ $type === 'date' ? 'required' : '' }} min="0" maxlength="{{ $max }}">
 </div>
