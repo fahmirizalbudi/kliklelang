@@ -9,6 +9,11 @@
     <div class="riwayat-lelang-barang-container">
       <ul class="riwayat-lelang-barang-list">
         @foreach ($daftarLelang as $lelang)
+          @php
+            $userId = Auth::guard('masyarakat')->id();
+            $highestBid = $lelang->historyLelang->max('penawaran_harga');
+            $userBid = $lelang->historyLelang->where('id_user', $userId)->max('penawaran_harga');
+          @endphp
           @include('app.lelang.riwayat.includes.card')
         @endforeach
       </ul>

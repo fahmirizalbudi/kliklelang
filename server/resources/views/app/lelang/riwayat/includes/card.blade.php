@@ -1,5 +1,12 @@
 <li class="barang-list-container">
-  <article>
+  <article class="lelang-card">
+    @if ($lelang->status === 'ditutup' && $userBid)
+      @if ($userBid == $highestBid)
+        <div class="ribbon ribbon-menang">Menang</div>
+      @else
+        <div class="ribbon ribbon-kalah">Kalah</div>
+      @endif
+    @endif
     <a href="{{ route('app.lelang.bid', $lelang) }}" class="barang-list-inner">
       <div class="barang-list-image">
         <img src="{{ asset('storage/foto_barang/' . $lelang->barang->foto_barang) }}"
