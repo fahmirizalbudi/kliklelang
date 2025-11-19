@@ -55,14 +55,36 @@ class AppController extends Controller
         return redirect()->back();
     }
 
-    public function history()
+    public function history(Request $request)
     {
         $masyarakat = Auth::guard('masyarakat')->user();
+
+        $status = $request->input('status');
+
         $daftarLelang = Lelang::with(['barang', 'masyarakat', 'historyLelang'])
             ->whereHas('historyLelang', function ($query) use ($masyarakat) {
                 $query->where('id_user', $masyarakat->id_user);
-            })
-            ->get();
+            });
+
+        switch ($status) {
+            case 'proses':
+                $daftarLelang->where('status', 'dibuka');
+                break;
+
+            case 'menang':
+                $daftarLelang->where('id_user', $masyarakat->id_user);
+                break;
+
+            case 'kalah':
+                $daftarLelang->whereNot('id_user', $masyarakat->id_user);
+                break;
+
+            case 'semua':
+            default:
+                break;
+        }
+
+        $daftarLelang = $daftarLelang->get();
 
         return view('app.lelang.riwayat.index', compact('daftarLelang'));
     }

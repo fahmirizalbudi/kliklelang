@@ -5,6 +5,24 @@
   <section id="riwayat-lelang">
     <header class="riwayat-lelang-header">
       <h2 class="riwayat-lelang-header-text">Riwayat Lelang Anda</h2>
+      <div class="status-filter">
+        <button onclick="window.location.href='{{ request()->fullUrlWithQuery(['status' => '']) }}'"
+          class="status-filter-button {{ request()->input('status') == '' ? 'active' : '' }}">
+          Semua
+        </button>
+        <button onclick="window.location.href='{{ request()->fullUrlWithQuery(['status' => 'proses']) }}'"
+          class="status-filter-button {{ request()->input('status') == 'proses' ? 'active' : '' }}">
+          Proses
+        </button>
+        <button onclick="window.location.href='{{ request()->fullUrlWithQuery(['status' => 'menang']) }}'"
+          class="status-filter-button {{ request()->input('status') == 'menang' ? 'active' : '' }}">
+          Menang
+        </button>
+        <button onclick="window.location.href='{{ request()->fullUrlWithQuery(['status' => 'kalah']) }}'"
+          class="status-filter-button {{ request()->input('status') == 'kalah' ? 'active' : '' }}">
+          Kalah
+        </button>
+      </div>
     </header>
     <div class="riwayat-lelang-barang-container">
       <ul class="riwayat-lelang-barang-list">
