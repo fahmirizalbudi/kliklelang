@@ -35,6 +35,12 @@ class AuthController extends Controller
             return redirect()->back()->withInput();
         }
 
+        if (Auth::guard('masyarakat')->user()->status !== 'aktif') {
+            sweetalert()->addError('Akun diblokir, silahkan hubungi admin.', 'Akun Diblokir');
+            Auth::guard('masyarakat')->logout();
+            return to_route('login.view.masyarakat');
+        }
+
         $request->session()->regenerate();
         return redirect()->intended(route('app.index'));
     }
