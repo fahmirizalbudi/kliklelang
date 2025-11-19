@@ -6,7 +6,7 @@
     <x-breadcrumb groupPage="Pelelangan" currentPage="Histori Lelang"></x-breadcrumb>
     <section>
       <x-data-table title="Histori Lelang"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Lelang ID', 'Barang', 'Masyarakat', 'Harga Penawaran', '']" v2>
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Lelang ID', 'Tanggal Lelang', 'Barang', 'Pemenang', 'Harga Akhir', '']" v2>
         <x-slot name="footer"></x-slot>
         @foreach ($histories as $history)
           <x-row>
@@ -14,23 +14,27 @@
               <p class="default-cell-text" style="color: #667085">{{ $histories->firstItem() + $loop->index }}</p>
             </x-cell>
             <x-cell>
-              <p onclick="window.location.href = '{{ route('lelang.detail', $history->lelang) }}'" class="default-cell-text idLelang" style="font-weight: 500">#{{ $history->lelang->id_lelang }}</p>
+              <p onclick="window.location.href = '{{ route('lelang.detail', $history) }}'"
+                class="default-cell-text idLelang" style="font-weight: 500">#{{ $history->id_lelang }}</p>
+            </x-cell>
+            <x-cell>
+              <p class="default-cell-text">{{ $history->tgl_lelang }}</p>
             </x-cell>
             <x-cell>
               <div class="barang-cell">
                 <div class="barang-preview">
                   <img class="barang-preview-image"
-                    src="{{ asset('storage/foto_barang/' . $history->lelang->barang->foto_barang) }}"
-                    alt="{{ $history->lelang->barang->nama_barang }}">
+                    src="{{ asset('storage/foto_barang/' . $history->barang->foto_barang) }}"
+                    alt="{{ $history->barang->nama_barang }}">
                 </div>
-                <span class="barang-text">{{ $history->lelang->barang->nama_barang }}</span>
+                <span class="barang-text">{{ $history->barang->nama_barang }}</span>
               </div>
             </x-cell>
             <x-cell>
               <p class="default-cell-text">{{ $history->masyarakat->nama_lengkap }}</p>
             </x-cell>
             <x-cell>
-              <p class="default-cell-text">Rp {{ number_format($history->penawaran_harga, 0, '.', '.') }}</p>
+              <p class="default-cell-text">Rp {{ number_format($history->harga_akhir, 0, '.', '.') }}</p>
             </x-cell>
           </x-row>
         @endforeach
