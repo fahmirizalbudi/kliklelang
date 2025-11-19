@@ -15,7 +15,6 @@ class AuthService {
 
       DioClient.initialize(token);
       return true;
-
     } on DioException catch (e) {
       debugPrint(e.error.toString());
       return false;

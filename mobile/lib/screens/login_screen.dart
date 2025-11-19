@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/helpers/color_helper.dart';
 import 'package:mobile/helpers/toast_helper.dart';
+import 'package:mobile/screens/home_screen.dart';
 import 'package:mobile/services/auth_service.dart';
 import 'package:mobile/widgets/edittext_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -56,20 +57,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 8),
-              Text(
-                'Silahkan Log In untuk melakukan lelang.',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: ColorHelper.fromHex('#7b7b7b'),
+              Center(
+                child: Text(
+                  'Silahkan Log In untuk melakukan lelang.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: ColorHelper.fromHex('#7b7b7b'),
+                  ),
                 ),
               ),
               SizedBox(height: 48),
-              EditText(placeholder: 'Username', controller: usernameController),
+              EditText(
+                placeholder: 'Username',
+                controller: usernameController,
+                leftIcon: Icon(Icons.person_outline, size: 25),
+              ),
               SizedBox(height: 16),
               EditText(
                 placeholder: 'Password',
                 isPassword: true,
                 controller: passwordController,
+                leftIcon: Icon(Icons.password_outlined, size: 25),
               ),
               SizedBox(height: 32),
               SizedBox(
@@ -80,11 +88,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     String password = passwordController.text;
 
                     final ok = await AuthService().login(username, password);
-                    if (ok) {
-                      ToastHelper.show('Login Skses');
+                    if (ok && context.mounted) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
                       return;
                     }
-                    ToastHelper.show('msg');
+                    ToastHelper.show('Username atau password salah.');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorHelper.fromHex('#465bff'),
