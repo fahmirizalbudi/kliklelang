@@ -13,6 +13,9 @@ class HistoryLelangController extends Controller
         $petugas = Auth::guard('petugas')->user();
         $search = $request->input('search');
 
+        $mulai = $request->input('mulai');
+        $sampai = $request->input('sampai');
+
         $histories = Lelang::with(['masyarakat', 'barang'])
             ->where('status', 'ditutup')
             ->where(function ($query) use ($search) {
@@ -22,8 +25,11 @@ class HistoryLelangController extends Controller
                     ->orWhereHas('barang', function ($q) use ($search) {
                         $q->where('nama_barang', 'like', "%$search%");
                     });
-            })
-            ->paginate(7);
+            })->when($mulai, function ($query) use ($mulai) {
+                $query->whereDate('tgl_lelang', '>=', $mulai);
+            })->when($sampai, function ($query) use ($sampai) {
+                $query->whereDate('tgl_lelang', '<=', $sampai);
+            })->paginate(7);
 
         return view('dashboard.lelang.history.index', compact('histories'));
     }

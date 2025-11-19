@@ -1,4 +1,4 @@
-@props(['title', 'description', 'withAdd' => '', 'withAddText' => '', 'rowHeaders', 'v2' => false, 'filterItems' => [], 'withoutFooter' => false, 'withoutOptional' => false, 'export' => null])
+@props(['title', 'description', 'withAdd' => '', 'withAddText' => '', 'rowHeaders', 'v2' => false, 'filterItems' => [], 'withoutFooter' => false, 'withoutOptional' => false, 'export' => null, 'useDate' => false])
 
 <div class="data-table">
   <div class="data-table-top">
@@ -52,12 +52,13 @@
             </form>
           </div>
         </div>
-        <div class="data-table-filter-table-select">
-          <button class="data-table-filter-button">
-            Filter
-            <x-icon name="filter"></x-icon>
-          </button>
+        @if ($useDate)
+        <div class="data-table-date-filter" style="display: flex; gap: 0.75rem; align-items: center;">
+          <x-text-field type="date" name="mulai" placeholder="" :defaultValue="request()->input('mulai')"></x-text-field>
+          <span style="font-size: 14px; color: #374151;">➤</span>
+          <x-text-field type="date" name="sampai" placeholder="" :defaultValue="request()->input('sampai')"></x-text-field>
         </div>
+        @endif
       </div>
     </div>
   @endif
