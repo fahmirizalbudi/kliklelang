@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Auth;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -42,7 +43,17 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting(): void
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+
+            if ($user = Auth::guard('petugas')->user()) {
+                return Limit::perMinute(60)->by($user->id_petugas);
+            }
+
+            if ($user = Auth::guard('masyarakat')->user()) {
+                return Limit::perMinute(60)->by($user->id_user);
+            }
+
+            return Limit::perMinute(60)->by($request->ip());
+
         });
     }
 }
