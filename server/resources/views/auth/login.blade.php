@@ -39,6 +39,11 @@
               Log In
             </button>
           </form>
+          @if (request()->is('auth/login/masyarakat'))
+            <a href="{{ route('register.view') }}" class="register-link">
+              Belum punya akun? Register
+            </a>
+          @endif
         </div>
       </div>
       <div class="login-form-inner-2">

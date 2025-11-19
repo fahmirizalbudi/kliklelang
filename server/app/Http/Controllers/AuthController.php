@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\Masyarakat;
 use Auth;
+use Hash;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -35,6 +37,29 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
         return redirect()->intended(route('app.index'));
+    }
+
+    public function viewRegister()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $masyarakat = $request->validate([
+            'nama_lengkap' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'telp' => 'required',
+            'alamat' => 'required',
+        ]);
+
+        $masyarakat['password'] = Hash::make($masyarakat['password']);
+        $masyarakat['status'] = 'aktif';
+        Masyarakat::create($masyarakat);
+
+        flash()->addSuccess('Akun berhasil dibuat!', 'Sukses');
+        return redirect()->back();
     }
 
     public function logout(Request $request)

@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 define('INDEX_PATH', '/');
 
 Route::prefix('auth')->group(function () {
+  Route::get('register', [AuthController::class, 'viewRegister'])->name('register.view');
+  Route::post('register', [AuthController::class, 'register'])->name('register');
   Route::prefix('login')->group(function () {
     Route::get('petugas', [AuthController::class, 'view_login'])->name('login.view.petugas');
     Route::get('masyarakat', [AuthController::class, 'view_login'])->name('login.view.masyarakat');

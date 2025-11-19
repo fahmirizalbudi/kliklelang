@@ -1,11 +1,12 @@
-.login {
+.register {
   width: 100%;
   height: 100dvh;
   overflow: hidden;
   display: flex;
+  flex-direction: row-reverse;
 }
 
-.login-form {
+.register-form {
   padding: 50px 40px;
   display: flex;
   flex-direction: column;
@@ -13,7 +14,7 @@
   flex: 1 1;
 }
 
-.login-illustration {
+.register-illustration {
   display: flex;
   flex: 2 1;
   align-items: center;
@@ -23,13 +24,13 @@
   background-color: rgba(70, 95, 255, 0.9);
 }
 
-.login-illustration-image {
+.register-illustration-image {
   height: 100%;
   overflow-clip-margin: content-box;
   overflow: clip;
 }
 
-.login-form-inner {
+.register-form-inner {
   max-width: 550px;
   width: 95%;
 }
@@ -41,46 +42,46 @@
   gap: calc(0.25rem * 3);
 }
 
-.login-brand-logo {
+.register-brand-logo {
   border-radius: 6px;
 }
 
-.login-brand-text {
+.register-brand-text {
   font-size: calc(0.25rem * 6);
   font-weight: 600;
   color: #101828;
 }
 
-.login-form-inner-header {
+.register-form-inner-header {
   display: flex;
   flex-direction: column;
   margin-top: 42px;
   gap: 12px;
 }
 
-.login-form-inner-header-text {
+.register-form-inner-header-text {
   color: rgba(0, 0, 0, 0.9);
   font-weight: 600;
 }
 
-.login-form-inner-description-text {
+.register-form-inner-description-text {
   text-align: justify;
   color: #333;
 }
 
-.login-form-inner-body {
+.register-form-inner-body {
   display: flex;
   flex-direction: column;
   margin-top: 42px;
 }
 
-.login-form-inner-body-action {
+.register-form-inner-body-action {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.login-button {
+.register-button {
   margin-top: 8px;
   border: none;
   background-color: #465fff;
@@ -93,7 +94,7 @@
   transition: all 0.3s ease;
 }
 
-.login-form-inner-2 {
+.register-form-inner-2 {
   max-width: 550px;
   width: 95%;
   height: 100%;
@@ -103,7 +104,7 @@
   justify-content: flex-end;
 }
 
-.login-as {
+.register-as {
   width: 100%;
   margin-top: 8px;
   text-decoration: none;
@@ -116,16 +117,4 @@
   font-size: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
-}
-
-.register-link {
-  color: #465fff;
-  font-size: 15px;
-  text-decoration: none;
-  text-align: center;
-  margin-top: 14px;
-}
-
-.register-link:hover {
-  text-decoration: underline;
 }
