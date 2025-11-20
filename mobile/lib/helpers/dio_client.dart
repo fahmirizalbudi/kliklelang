@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/helpers/url_helper.dart';
 
 class DioClient {
   static final Dio dio = Dio(
     BaseOptions(
-      baseUrl: 'http://192.168.43.205:8000',
+      baseUrl: '${UrlHelper.getBaseUrl()}:8000',
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
       contentType: 'application/json',

@@ -1,22 +1,21 @@
-// lib/widgets/bid_bottom_sheet.dart
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile/helpers/color_helper.dart';
+import 'package:mobile/helpers/currency_helper.dart';
+import 'package:mobile/helpers/toast_helper.dart';
+import 'package:mobile/services/lelang_service.dart';
 import 'package:mobile/widgets/edittext_widget.dart';
 
 class BidBottomSheet extends StatefulWidget {
-  // Menerima List<dynamic> sesuai permintaan API Anda
-  final List<dynamic> bidHistoryList;
-  final double currentHighestBidNumeric;
+  final List<dynamic> historiLelang;
+  final int tawaranTertinggi;
   final int idLelang;
 
   const BidBottomSheet({
     super.key,
-    required this.bidHistoryList,
+    this.historiLelang = const [],
     required this.idLelang,
-    required this.currentHighestBidNumeric,
+    required this.tawaranTertinggi,
   });
 
   @override
@@ -24,24 +23,17 @@ class BidBottomSheet extends StatefulWidget {
 }
 
 class _BidBottomSheetState extends State<BidBottomSheet> {
-  late TextEditingController _bidController;
-
-  final currencyFormatter = NumberFormat.currency(
-    locale: 'id_ID',
-    symbol: 'Rp ',
-    decimalDigits: 0,
-  );
+  final TextEditingController bidController = TextEditingController();
   final timeFormatter = DateFormat('HH:mm, d MMM yyyy');
 
   @override
   void initState() {
     super.initState();
-    _bidController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _bidController.dispose();
+    bidController.dispose();
     super.dispose();
   }
 
@@ -76,7 +68,7 @@ class _BidBottomSheetState extends State<BidBottomSheet> {
             ),
             const SizedBox(height: 4),
             Text(
-              "Bid saat ini: ${currencyFormatter.format(widget.currentHighestBidNumeric)}",
+              "Penawaran saat ini: ${widget.tawaranTertinggi > 0 ? CurrencyHelper.formatRupiah(widget.tawaranTertinggi) : '-'}",
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -87,7 +79,7 @@ class _BidBottomSheetState extends State<BidBottomSheet> {
 
             Container(
               constraints: const BoxConstraints(maxHeight: 200),
-              child: widget.bidHistoryList.isEmpty
+              child: widget.historiLelang.isEmpty
                   ? Center(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 24.0),
@@ -99,9 +91,9 @@ class _BidBottomSheetState extends State<BidBottomSheet> {
                     )
                   : ListView.builder(
                       shrinkWrap: true,
-                      itemCount: widget.bidHistoryList.length,
+                      itemCount: widget.historiLelang.length,
                       itemBuilder: (context, index) {
-                        final bid = widget.bidHistoryList[index] as dynamic;
+                        final bid = widget.historiLelang[index] as dynamic;
                         return _buildHistoryTile(bid);
                       },
                     ),
@@ -109,14 +101,28 @@ class _BidBottomSheetState extends State<BidBottomSheet> {
             const SizedBox(height: 24),
             EditText(
               placeholder: 'Masukkan tawaran anda',
-              controller: TextEditingController(),
+              controller: bidController,
               leftIcon: Icon(Icons.money, size: 22),
             ),
             const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () async {},
+                onPressed: () async {
+                  int hargaBid = int.tryParse(bidController.text) ?? 0;
+                  final ok = await LelangService().placeBid(
+                    widget.idLelang,
+                    hargaBid,
+                  );
+                  if (context.mounted && ok) {
+                    Navigator.pop(context, true);
+                    return;
+                  }
+
+                  ToastHelper.show(
+                    'Penawaran Anda harus lebih tinggi dari penawaran sebelumnya!',
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorHelper.fromHex('#465bff'),
                   shape: RoundedRectangleBorder(
@@ -149,7 +155,7 @@ class _BidBottomSheetState extends State<BidBottomSheet> {
       timestamp = DateTime.now();
     }
 
-    final isHighest = bidAmount == widget.currentHighestBidNumeric;
+    final isHighest = bidAmount == widget.tawaranTertinggi;
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -180,7 +186,7 @@ class _BidBottomSheetState extends State<BidBottomSheet> {
             ],
           ),
           Text(
-            currencyFormatter.format(bidAmount),
+            CurrencyHelper.formatRupiah(bidAmount),
             style: TextStyle(
               fontWeight: isHighest ? FontWeight.w700 : FontWeight.w500,
               fontSize: 15,

@@ -10,3 +10,6 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::get('lelang', [ApiLelangController::class, 'index'])->middleware('api.masyarakat');
+Route::get('lelang/{lelang}/detail', [ApiLelangController::class, 'detail'])->middleware('api.masyarakat');
+Route::post('lelang/{lelang}/bid', [ApiLelangController::class, 'bid'])->middleware('api.masyarakat');
+Route::get('lelang/history', [ApiLelangController::class, 'history'])->middleware('api.masyarakat');

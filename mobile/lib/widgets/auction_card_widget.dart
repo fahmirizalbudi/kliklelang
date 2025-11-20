@@ -3,46 +3,33 @@ import 'package:mobile/helpers/color_helper.dart';
 import 'package:mobile/screens/auction_screen.dart';
 
 class AuctionCard extends StatelessWidget {
-  final String imageUrl;
-  final String itemName;
-  final String startingPrice;
-  final String highestBid;
-  final String highestBidderName;
-  final List<dynamic> bidHistoryList;
+  final String gambar;
+  final String namaBarang;
+  final String hargaAwal;
+  final String tawaranTertinggi;
+  final String namaTawaranTertinggi;
+  final List<dynamic> historiLelang;
   final int idLelang;
 
   const AuctionCard({
     super.key,
-    required this.imageUrl,
-    required this.itemName,
-    required this.startingPrice,
-    required this.highestBid,
-    required this.highestBidderName,
-    required this.bidHistoryList,
+    required this.gambar,
+    required this.namaBarang,
+    required this.hargaAwal,
+    required this.tawaranTertinggi,
+    required this.namaTawaranTertinggi,
+    required this.historiLelang,
     required this.idLelang,
   });
 
   @override
   Widget build(BuildContext context) {
-    final String itemDescription =
-        "Ini adalah deskripsi untuk $itemName. Barang ini dalam kondisi sangat baik, "
-        "dijual apa adanya. Silakan bid dengan bijak. Lelang akan ditutup "
-        "sesuai dengan waktu yang tertera. Pemenang akan dihubungi oleh tim kami.";
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => AuctionScreen(
-              bidHistoryList: bidHistoryList,
-              idLelang: idLelang,
-              imageUrl: imageUrl,
-              itemName: itemName,
-              startingPrice: startingPrice,
-              highestBid: highestBid,
-              highestBidderName: highestBidderName,
-              description: itemDescription,
-            ),
+            builder: (context) => AuctionScreen(idLelang: idLelang),
           ),
         );
       },
@@ -58,14 +45,14 @@ class AuctionCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              imageUrl,
-              height: 260,
+              gambar,
+              height: 300,
               width: double.infinity,
               fit: BoxFit.cover,
               loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress == null) return child;
                 return Container(
-                  height: 260,
+                  height: 300,
                   color: Colors.grey.shade200,
                   child: Center(
                     child: CircularProgressIndicator(
@@ -79,7 +66,7 @@ class AuctionCard extends StatelessWidget {
                 );
               },
               errorBuilder: (context, error, stackTrace) => Container(
-                height: 260,
+                height: 300,
                 color: Colors.grey.shade200,
                 child: Icon(
                   Icons.image_not_supported_outlined,
@@ -95,7 +82,7 @@ class AuctionCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    itemName,
+                    namaBarang,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16.5,
@@ -109,10 +96,10 @@ class AuctionCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildPriceColumn('Harga Awal', startingPrice),
+                      _buildPriceColumn('Harga Awal', hargaAwal),
                       _buildPriceColumn(
                         'Penawaran Tertinggi',
-                        highestBid,
+                        tawaranTertinggi,
                         isHighestBid: true,
                       ),
                     ],

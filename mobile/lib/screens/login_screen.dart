@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/helpers/color_helper.dart';
 import 'package:mobile/helpers/toast_helper.dart';
-import 'package:mobile/screens/home_screen.dart';
+import 'package:mobile/screens/main_screen.dart';
 import 'package:mobile/services/auth_service.dart';
 import 'package:mobile/widgets/edittext_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (ok && context.mounted) {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        MaterialPageRoute(builder: (context) => MainScreen()),
                       );
                       return;
                     }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile/helpers/color_helper.dart';
 import 'package:mobile/helpers/currency_helper.dart';
+import 'package:mobile/helpers/url_helper.dart';
 import 'package:mobile/services/lelang_service.dart';
 import 'package:mobile/widgets/auction_card_widget.dart';
 import 'package:mobile/widgets/edittext_widget.dart';
@@ -94,18 +95,18 @@ class HomeScreen extends StatelessWidget {
                       return Column(
                         children: [
                           AuctionCard(
-                            bidHistoryList: history,
+                            historiLelang: history,
                             idLelang: lelang['id_lelang'],
-                            imageUrl:
-                                'http://192.168.43.205:8000/storage/foto_barang/${lelang['barang']['foto_barang']}',
-                            itemName: lelang['barang']['nama_barang'],
-                            startingPrice: CurrencyHelper.formatRupiah(
+                            gambar:
+                                '${UrlHelper.getBaseUrl()}:8000/storage/foto_barang/${lelang['barang']['foto_barang']}',
+                            namaBarang: lelang['barang']['nama_barang'],
+                            hargaAwal: CurrencyHelper.formatRupiah(
                               lelang['barang']['harga_awal'],
                             ),
-                            highestBid: highestBidValue != null
+                            tawaranTertinggi: highestBidValue != null
                                 ? CurrencyHelper.formatRupiah(highestBidValue)
                                 : "-",
-                            highestBidderName: lelang['masyarakat'] != null
+                            namaTawaranTertinggi: lelang['masyarakat'] != null
                                 ? lelang['masyarakat']['nama_lengkap']
                                 : "-",
                           ),

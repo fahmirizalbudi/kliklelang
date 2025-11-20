@@ -18,6 +18,7 @@ class HistoryLelangController extends Controller
 
         $histories = Lelang::with(['masyarakat', 'barang'])
             ->where('status', 'ditutup')
+            ->where('id_petugas', Auth::guard('petugas')->id())
             ->where(function ($query) use ($search) {
                 $query->whereHas('masyarakat', function ($q) use ($search) {
                     $q->where('nama_lengkap', 'like', "%$search%");

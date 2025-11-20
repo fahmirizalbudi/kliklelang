@@ -3,24 +3,23 @@ import 'package:mobile/helpers/color_helper.dart';
 import 'package:mobile/helpers/currency_helper.dart';
 import 'package:mobile/helpers/url_helper.dart';
 import 'package:mobile/services/lelang_service.dart';
-import 'package:mobile/widgets/bid_bottom_sheet.widget.dart';
 
-class AuctionScreen extends StatefulWidget {
+class HistoryDetailScreen extends StatefulWidget {
   final int idLelang;
 
-  const AuctionScreen({super.key, required this.idLelang});
+  const HistoryDetailScreen({super.key, required this.idLelang});
 
   @override
-  State<AuctionScreen> createState() => _AuctionScreenState();
+  State<HistoryDetailScreen> createState() => _HistoryDetailScreenState();
 }
 
-class _AuctionScreenState extends State<AuctionScreen> {
+class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
   late dynamic detailLelang;
   late String gambar;
   late String namaBarang;
-  late String tawaranTertinggi;
+  late String hargaAkhir;
   late String hargaAwal;
-  late String namaTawaranTertinggi;
+  late String pemenang;
   late String deskripsiBarang;
   late List<dynamic> historiLelang;
   bool isLoading = true;
@@ -41,15 +40,12 @@ class _AuctionScreenState extends State<AuctionScreen> {
 
       historiLelang = detailLelang['history_lelang'];
 
-      if (historiLelang.isNotEmpty) {
-        var highest = historiLelang.last;
-        tawaranTertinggi = CurrencyHelper.formatRupiah(
-          highest["penawaran_harga"],
-        );
-        namaTawaranTertinggi = highest["masyarakat"]["nama_lengkap"];
+      if (detailLelang['masyarakat'] != null) {
+        pemenang = detailLelang['masyarakat']['nama_lengkap'];
+        hargaAkhir = CurrencyHelper.formatRupiah(detailLelang['harga_akhir']);
       } else {
-        tawaranTertinggi = '-';
-        namaTawaranTertinggi = '-';
+        hargaAkhir = '-';
+        pemenang = '-';
       }
       isLoading = false;
     });
@@ -79,7 +75,7 @@ class _AuctionScreenState extends State<AuctionScreen> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
-          "Detail Lelang",
+          "Detail Histori Lelang",
           style: TextStyle(
             color: Colors.black87,
             fontSize: 17,
@@ -88,7 +84,6 @@ class _AuctionScreenState extends State<AuctionScreen> {
         ),
         centerTitle: true,
       ),
-
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,33 +93,7 @@ class _AuctionScreenState extends State<AuctionScreen> {
               height: 300,
               width: double.infinity,
               fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Container(
-                  height: 260,
-                  color: Colors.grey.shade200,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                          : null,
-                    ),
-                  ),
-                );
-              },
-              errorBuilder: (context, error, stackTrace) => Container(
-                height: 260,
-                color: Colors.grey.shade200,
-                child: Icon(
-                  Icons.image_not_supported_outlined,
-                  color: Colors.grey.shade400,
-                  size: 48,
-                ),
-              ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -139,7 +108,6 @@ class _AuctionScreenState extends State<AuctionScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-
                   Row(
                     children: [
                       Icon(
@@ -169,7 +137,7 @@ class _AuctionScreenState extends State<AuctionScreen> {
                   const SizedBox(height: 20),
 
                   Text(
-                    "PENAWARAN TERTINGGI",
+                    "HARGA AKHIR",
                     style: TextStyle(
                       color: Colors.grey.shade600,
                       fontSize: 13,
@@ -178,7 +146,7 @@ class _AuctionScreenState extends State<AuctionScreen> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    tawaranTertinggi,
+                    hargaAkhir,
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 24,
@@ -189,10 +157,11 @@ class _AuctionScreenState extends State<AuctionScreen> {
 
                   _buildInfoRow("Harga Awal", hargaAwal, Icons.sell_outlined),
                   const SizedBox(height: 8),
+
                   _buildInfoRow(
-                    "Penawaran saat Ini",
-                    namaTawaranTertinggi,
-                    Icons.person_outline,
+                    "Pemenang",
+                    pemenang,
+                    Icons.emoji_events_outlined,
                   ),
 
                   const SizedBox(height: 20),
@@ -216,73 +185,29 @@ class _AuctionScreenState extends State<AuctionScreen> {
                       height: 1.5,
                     ),
                   ),
+
+                  const SizedBox(height: 20),
+                  const Divider(),
+                  const SizedBox(height: 20),
+
+                  Text(
+                    "Riwayat Penawaran",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17,
+                      color: ColorHelper.fromHex('#1d2939'),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+
+                  _buildBidHistoryList(),
                 ],
               ),
             ),
           ],
         ),
       ),
-
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 10,
-              offset: const Offset(0, -1),
-            ),
-          ],
-        ),
-        child: SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () async {
-              final result = await showModalBottomSheet(
-                context: context,
-                isScrollControlled: true,
-                backgroundColor: Colors.white,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                ),
-                builder: (ctx) {
-                  return BidBottomSheet(
-                    idLelang: widget.idLelang,
-                    historiLelang: historiLelang,
-                    tawaranTertinggi: tawaranTertinggi != '-'
-                        ? int.parse(
-                            tawaranTertinggi
-                                .replaceAll('Rp', '')
-                                .replaceAll('.', '')
-                                .trim(),
-                          )
-                        : 0,
-                  );
-                },
-              );
-
-              if (result == true) {
-                setState(() {
-                  fetchData();
-                });
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: ColorHelper.fromHex('#465bff'),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 17),
-            ),
-            child: Text(
-              "Ikuti Lelang",
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar: null,
     );
   }
 
@@ -307,6 +232,66 @@ class _AuctionScreenState extends State<AuctionScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildBidHistoryList() {
+    if (historiLelang.isEmpty) {
+      return const Center(child: Text("Belum ada riwayat penawaran."));
+    }
+    final reversedList = historiLelang.reversed.toList();
+
+    return Column(
+      children: reversedList.asMap().entries.map((entry) {
+        final int index = entry.key;
+        final dynamic bid = entry.value;
+
+        final bool isWinner = (index == 0);
+
+        final FontWeight nameWeight = isWinner
+            ? FontWeight.w700
+            : FontWeight.w500;
+        final FontWeight priceWeight = isWinner
+            ? FontWeight.w700
+            : FontWeight.w500;
+        final Color priceColor = isWinner
+            ? ColorHelper.fromHex('#465bff')
+            : ColorHelper.fromHex('#1d2939');
+
+        return Card(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: BorderSide(color: Colors.grey.shade200),
+          ),
+          margin: const EdgeInsets.symmetric(vertical: 4),
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: isWinner
+                  ? ColorHelper.fromHex('#465bff').withOpacity(0.1)
+                  : Colors.grey.shade100,
+              child: Icon(
+                isWinner ? Icons.emoji_events : Icons.person,
+                color: isWinner
+                    ? ColorHelper.fromHex('#465bff')
+                    : Colors.grey.shade600,
+              ),
+            ),
+            title: Text(
+              bid['masyarakat']['nama_lengkap'],
+              style: TextStyle(fontWeight: nameWeight),
+            ),
+            trailing: Text(
+              CurrencyHelper.formatRupiah(bid['penawaran_harga']),
+              style: TextStyle(
+                fontWeight: priceWeight,
+                color: priceColor,
+                fontSize: 15,
+              ),
+            ),
+          ),
+        );
+      }).toList(),
     );
   }
 }
