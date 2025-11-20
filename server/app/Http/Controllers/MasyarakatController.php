@@ -42,6 +42,7 @@ class MasyarakatController extends Controller
             $masyarakat->password = Hash::make($request->password);
         }
         $masyarakat->nama_lengkap = $request->nama_lengkap;
+        $masyarakat->nik = $request->nik;
         $masyarakat->username = $request->username;
         $masyarakat->telp = $request->telp;
         $masyarakat->alamat = $request->alamat;

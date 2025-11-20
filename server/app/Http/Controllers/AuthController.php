@@ -4,45 +4,46 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Models\Masyarakat;
+use App\Models\Petugas;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function view_login()
+    public function viewLogin()
     {
         return view('auth.login');
     }
 
-    public function login_petugas(LoginRequest $request)
+    public function login(LoginRequest $request)
     {
-        $credentials = $request->validated();
-        if (!Auth::guard('petugas')->attempt($credentials)) {
-            sweetalert()->addError('Username atau password salah. Silakan coba lagi.', 'Login Gagal');
-            return redirect()->back()->withInput();
+        $login = $request->login;
+        $password = $request->password;
+
+        $petugas = Petugas::where('username', $login)->first();
+        if ($petugas && Hash::check($password, $petugas->password)) {
+            Auth::guard('petugas')->login($petugas);
+            $request->session()->regenerate();
+            return to_route('home');
         }
 
-        $request->session()->regenerate();
-        return redirect()->intended(route('home'));
-    }
+        $masyarakat = Masyarakat::where('username', $login)->orWhere('nik', $login)->first();
+        if ($masyarakat && Hash::check($password, $masyarakat->password)) {
+            Auth::guard('masyarakat')->login($masyarakat);
+            $request->session()->regenerate();
 
-    public function login_masyarakat(LoginRequest $request)
-    {
-        $credentials = $request->validated();
-        if (!Auth::guard('masyarakat')->attempt($credentials)) {
-            sweetalert()->addError('Username atau password salah. Silakan coba lagi.', 'Login Gagal');
-            return redirect()->back()->withInput();
+            if (Auth::guard('masyarakat')->user()->status !== 'aktif') {
+                sweetalert()->addError('Akun diblokir, silahkan hubungi admin.', 'Akun Diblokir');
+                Auth::guard('masyarakat')->logout();
+                return to_route('login.view');
+            }
+
+            return to_route('app.index');
         }
 
-        if (Auth::guard('masyarakat')->user()->status !== 'aktif') {
-            sweetalert()->addError('Akun diblokir, silahkan hubungi admin.', 'Akun Diblokir');
-            Auth::guard('masyarakat')->logout();
-            return to_route('login.view.masyarakat');
-        }
-
-        $request->session()->regenerate();
-        return redirect()->intended(route('app.index'));
+        sweetalert()->addError('Username atau password salah. Silakan coba lagi.', 'Login Gagal');
+        return redirect()->back()->withInput();
     }
 
     public function viewRegister()
@@ -54,10 +55,19 @@ class AuthController extends Controller
     {
         $masyarakat = $request->validate([
             'nama_lengkap' => 'required',
+            'nik' => 'required|digits:16',
             'username' => 'required',
             'password' => 'required',
             'telp' => 'required',
             'alamat' => 'required',
+        ], [
+            'nama_lengkap.required' => 'Nama lengkap wajib diisi.',
+            'nik.required' => 'NIK wajib diisi.',
+            'nik.digits' => 'NIK harus berisi tepat 16 digit.',
+            'username.required' => 'Username wajib diisi.',
+            'password.required' => 'Password wajib diisi.',
+            'telp.required' => 'Nomor telepon wajib diisi.',
+            'alamat.required' => 'Alamat wajib diisi.',
         ]);
 
         $masyarakat['password'] = Hash::make($masyarakat['password']);
@@ -73,12 +83,10 @@ class AuthController extends Controller
         switch (true) {
             case Auth::guard('petugas')->check():
                 Auth::guard('petugas')->logout();
-                $redirect = '/auth/login/petugas';
                 break;
 
             case Auth::guard('masyarakat')->check():
                 Auth::guard('masyarakat')->logout();
-                $redirect = '/auth/login/masyarakat';
                 break;
 
             default:
@@ -89,6 +97,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect($redirect);
+        return to_route('login.view');
     }
 }

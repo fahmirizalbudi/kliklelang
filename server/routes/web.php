@@ -16,12 +16,10 @@ define('INDEX_PATH', '/');
 Route::prefix('auth')->group(function () {
   Route::get('register', [AuthController::class, 'viewRegister'])->name('register.view');
   Route::post('register', [AuthController::class, 'register'])->name('register');
-  Route::prefix('login')->group(function () {
-    Route::get('petugas', [AuthController::class, 'view_login'])->name('login.view.petugas');
-    Route::get('masyarakat', [AuthController::class, 'view_login'])->name('login.view.masyarakat');
-    Route::post('petugas', [AuthController::class, 'login_petugas'])->name('login.petugas');
-    Route::post('masyarakat', [AuthController::class, 'login_masyarakat'])->name('login.masyarakat');
-  })->middleware(['guest:petugas', 'guest:masyarakat']);
+  Route::middleware(['guest:petugas', 'guest:masyarakat'])->group(function () {
+    Route::get('login', [AuthController::class, 'viewLogin'])->name('login.view');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+  });
   Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth.any');
 });
 

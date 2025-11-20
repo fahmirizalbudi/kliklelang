@@ -33,6 +33,7 @@ class MasyarakatRequest extends FormRequest
             'password' => $masyarakat ? 'nullable' : 'required',
             'telp' => 'required',
             'alamat' => 'required',
+            'nik' => 'required|min:16|max:16',
         ];
     }
 
@@ -45,6 +46,9 @@ class MasyarakatRequest extends FormRequest
             'password.required' => 'Password wajib diisi.',
             'telp.required' => 'Telepon wajib diisi.',
             'alamat.required' => 'Alamat wajib diisi.',
+            'nik.required' => 'NIK wajib diisi.',
+            'nik.min' => 'NIK harus berisi tepat 16 digit.',
+            'nik.max' => 'NIK harus berisi tepat 16 digit.',
         ];
     }
 }

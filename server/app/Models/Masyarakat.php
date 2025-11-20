@@ -12,7 +12,7 @@ class Masyarakat extends Authenticatable
 
     protected $table = 'tb_masyarakat';
     protected $primaryKey = 'id_user';
-    protected $fillable = ['nama_lengkap', 'username', 'password', 'telp', 'alamat', 'status'];
+    protected $fillable = ['nama_lengkap', 'username', 'password', 'telp', 'alamat', 'status', 'nik'];
     protected $hidden = ['password'];
 
     public function lelang()

@@ -7,11 +7,14 @@
     <section>
       <x-data-table title="Daftar Masyarakat"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!"
-        withAdd="{{ route('masyarakat.create') }}" withAddText="Tambah Masyarakat" :rowHeaders="['Nama Lengkap', 'Username', 'Telepon', 'Alamat', 'Status', '']">
+        withAdd="{{ route('masyarakat.create') }}" withAddText="Tambah Masyarakat" :rowHeaders="['NIK', 'Nama Lengkap', 'Username', 'Telepon', 'Alamat', 'Status', '']">
         @foreach ($daftarMasyarakat as $masyarakat)
           <x-row>
             <x-cell>
               <p class="default-cell-text" style="color: #667085">{{ $daftarMasyarakat->firstItem() + $loop->index }}</p>
+            </x-cell>
+            <x-cell>
+              <p class="default-cell-text">{{ $masyarakat->nik }}</p>
             </x-cell>
             <x-cell>
               <p class="default-cell-text" style="font-weight: 500">{{ $masyarakat->nama_lengkap }}</p>

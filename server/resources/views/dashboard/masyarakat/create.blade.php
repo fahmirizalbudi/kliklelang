@@ -26,6 +26,14 @@
               @enderror
             </div>
             <div class="alamat-masyarakat-group">
+              <x-label-field forField="telp">No Induk (NIK)</x-label-field>
+              <x-text-field placeholder="Masukkan nik" type="tel" name="nik"
+                defaultValue="{{ old('nik') }}"></x-text-field>
+              @error('nik')
+                <x-message asError text="{{ $message }}"></x-message>
+              @enderror
+            </div>
+            <div class="alamat-masyarakat-group">
               <x-label-field forField="masyarakat">Alamat</x-label-field>
               <textarea name="alamat" rows="7" id="alamat" placeholder="Masukkan alamat">{{ old('alamat') }}</textarea>
               @error('alamat')

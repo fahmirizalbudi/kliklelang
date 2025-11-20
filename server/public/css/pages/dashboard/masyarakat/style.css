@@ -10,6 +10,7 @@
   max-width: 110px;
   display: flex;
   gap: 1rem;
+  flex-direction: column;
 }
 
 .masyarakat-form {

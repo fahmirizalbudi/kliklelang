@@ -7,6 +7,13 @@
 
 @section('content')
   <section class="register">
+    @if ($errors->any())
+      @foreach ($errors->all() as $error)
+        @php
+          flash()->addError($error, 'Error');
+        @endphp
+      @endforeach
+    @endif
     <div class="register-form">
       <div class="register-form-inner">
         <a href="#" class="brand-link">
@@ -16,8 +23,8 @@
         <div class="register-form-inner-header">
           <h1 class="register-form-inner-header-text">Register
           </h1>
-          <span class="register-form-inner-description-text">Lengkapi data pendaftaran Anda untuk membuat akun KlikLelang.
-            Akun ini akan digunakan untuk mengikuti proses lelang.</span>
+          <span class="register-form-inner-description-text">Lengkapi data pendaftaran untuk membuat akun
+            KlikLelang.</span>
         </div>
         <div class="register-form-inner-body">
           <form method="POST" action="{{ route('register') }}" class="register-form-inner-body-action">
@@ -28,9 +35,14 @@
                 :defaultValue="old('nama_lengkap')"></x-text-field>
             </x-text-field-group>
             <x-text-field-group>
-              <x-text-field-label text="No Induk (NIK)" for="username" required></x-text-field-label>
-              <x-text-field placeholder="Masukkan no induk anda ..." name="username" :defaultValue="old('username')"
-                max="16"></x-text-field>
+              <x-text-field-label text="Username" for="username" required></x-text-field-label>
+              <x-text-field placeholder="Masukkan username anda ..." name="username"
+                :defaultValue="old('username')"></x-text-field>
+            </x-text-field-group>
+            <x-text-field-group>
+              <x-text-field-label text="No Induk (NIK)" for="nik" required></x-text-field-label>
+              <x-text-field placeholder="Masukkan no induk anda ..." name="nik" :defaultValue="old('nik')"
+                type="tel"></x-text-field>
             </x-text-field-group>
             <x-text-field-group>
               <x-text-field-label text="Password" for="password" required></x-text-field-label>
@@ -54,8 +66,8 @@
         </div>
       </div>
       <div class="register-form-inner-2">
-        <a href="{{ route('login.view.masyarakat') }}" class="register-as">
-          Log In sebagai Masyarakat
+        <a href="{{ route('login.view') }}" class="register-as">
+          Sudah punya akun? Log In
         </a>
       </div>
     </div>

@@ -188,6 +188,6 @@ return array(
     |     'types' => ['error'],
     */
     'filter_criteria' => array(
-        'limit' => 5, // Limit the number of notifications to display
+        'limit' => 10, // Limit the number of notifications to display
     ),
 );

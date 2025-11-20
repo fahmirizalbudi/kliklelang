@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('tb_masyarakat', function (Blueprint $table) {
             $table->id('id_user');
             $table->string('nama_lengkap');
+            $table->unsignedBigInteger('nik');
             $table->string('username');
             $table->string('password');
             $table->string('telp');

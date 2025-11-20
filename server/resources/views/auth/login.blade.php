@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title', 'KlikLelang - Log In ' . (request()->is('auth/login/petugas') ? 'Petugas' : 'Masyarakat'))
+@section('title', 'KlikLelang - Log In ')
 
 @push('styles')
   <link rel="stylesheet" href="{{ asset('css/pages/login/style.css') }}">
@@ -7,6 +7,13 @@
 
 @section('content')
   <section class="login">
+    @if ($errors->any())
+      @foreach ($errors->all() as $error)
+        @php
+          flash()->addError($error, 'Error');
+        @endphp
+      @endforeach
+    @endif
     <div class="login-form">
       <div class="login-form-inner">
         <a href="#" class="brand-link">
@@ -15,20 +22,17 @@
         </a>
         <div class="login-form-inner-header">
           <h1 class="login-form-inner-header-text">Log In
-            {{ request()->is('auth/login/petugas') ? 'Petugas' : 'Masyarakat' }}
           </h1>
-          <span
-            class="login-form-inner-description-text">{{ !request()->is('auth/login/petugas') ? 'Silahkan log in untuk melanjutkan ke dalam sistem aplikasi lelang online.' : 'Silahkan log in sebagai admin/petugas untuk mengatur sistem dan pengguna aplikasi lelang.' }}</span>
+          <span class="login-form-inner-description-text">Silahkan log in untuk melanjutkan ke dalam sistem aplikasi
+            lelang online.</span>
         </div>
         <div class="login-form-inner-body">
-          <form method="POST"
-            action="{{ route(request()->is('auth/login/petugas') ? 'login.petugas' : 'login.masyarakat') }}"
-            class="login-form-inner-body-action">
+          <form method="POST" action="{{ route('login') }}" class="login-form-inner-body-action">
             @csrf
             <x-text-field-group>
-              <x-text-field-label :text="request()->is('auth/login/petugas') ? 'Username' : 'No Induk (NIK)'" for="username" required></x-text-field-label>
-              <x-text-field icon="username" placeholder="Masukkan {{ request()->is('auth/login/petugas') ? 'username' : 'nik' }} anda ..." name="username"
-                :defaultValue="old('username')"></x-text-field>
+              <x-text-field-label text="Username / No Induk (NIK)" for="username" required></x-text-field-label>
+              <x-text-field icon="username" placeholder="Masukkan username atau nik anda ..." name="login"
+                :defaultValue="old('login')"></x-text-field>
             </x-text-field-group>
             <x-text-field-group>
               <x-text-field-label text="Password" for="password" required></x-text-field-label>
@@ -39,17 +43,14 @@
               Log In
             </button>
           </form>
-          @if (request()->is('auth/login/masyarakat'))
-            <a href="{{ route('register.view') }}" class="register-link">
-              Belum punya akun? Register
-            </a>
-          @endif
+          {{-- <a href="{{ route('register.view') }}" class="register-link">
+            Belum punya akun? Register
+          </a> --}}
         </div>
       </div>
       <div class="login-form-inner-2">
-        <a href="{{ route(request()->is('auth/login/petugas') ? 'login.view.masyarakat' : 'login.view.petugas') }}"
-          class="login-as">
-          Log In sebagai {{ request()->is('auth/login/petugas') ? 'Masyarakat' : 'Petugas' }}
+        <a href="{{ route('register.view') }}" class="login-as">
+          Belum punya akun? Register
         </a>
       </div>
     </div>
