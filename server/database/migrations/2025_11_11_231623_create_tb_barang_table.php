@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->date('tgl');
             $table->integer('harga_awal');
-            $table->string('deskripsi_barang');
+            $table->text('deskripsi_barang');
             $table->string('foto_barang');
             $table->timestamps();
         });

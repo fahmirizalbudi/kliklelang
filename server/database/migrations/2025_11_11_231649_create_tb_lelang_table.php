@@ -14,10 +14,10 @@ return new class extends Migration {
             $table->id('id_lelang');
             $table->unsignedBigInteger('id_barang');
             $table->date('tgl_lelang');
-            $table->integer('harga_akhir');
-            $table->unsignedBigInteger('id_user');
+            $table->integer('harga_akhir')->nullable();
+            $table->unsignedBigInteger('id_user')->nullable();
             $table->unsignedBigInteger('id_petugas');
-            $table->enum('status', ['dibuka', 'ditutup'])->nullable();
+            $table->enum('status', ['dibuka', 'ditutup']);
 
             $table->foreign('id_barang')->references('id_barang')->on('tb_barang');
             $table->foreign('id_user')->references('id_user')->on('tb_masyarakat');
