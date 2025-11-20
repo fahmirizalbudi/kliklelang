@@ -1,4 +1,4 @@
-@props(['placeholder', 'name', 'id' => null, 'defaultValue' => null, 'disabled' => false])
+@props(['placeholder', 'name', 'id' => null, 'defaultValue' => null, 'disabled' => false, 'onChange' => null])
 
 <select id="{{ $id ?? $name }}" name="{{ $name }}">
   <option value="" disabled selected hidden style="display: none">{{ $placeholder }}</option>
@@ -11,6 +11,9 @@
       name: '{{ $name }}',
       placeholder: '{{ $placeholder }}',
       value: '{{ $defaultValue }}',
+      onChange: function (value, text, option) {
+        {{ $onChange }}
+      }
     });
 
 

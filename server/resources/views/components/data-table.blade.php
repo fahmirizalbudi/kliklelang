@@ -1,4 +1,4 @@
-@props(['title', 'description', 'withAdd' => '', 'withAddText' => '', 'rowHeaders', 'v2' => false, 'filterItems' => [], 'withoutFooter' => false, 'withoutOptional' => false, 'export' => null, 'useDate' => false])
+@props(['title', 'description', 'withAdd' => '', 'withAddText' => '', 'rowHeaders', 'v2' => false, 'filterItems' => [], 'withoutFooter' => false, 'withoutOptional' => false, 'export' => null, 'useDate' => false, 'selectPetugas' => null])
 
 <div class="data-table">
   <div class="data-table-top">
@@ -28,6 +28,7 @@
           </div>
         @endif
       @endif
+      {{ $selectPetugas }}
       @if (!$withoutOptional)
         <button class="data-table-export-button" onclick="window.location.href = '{{ $export }}'">
           Export
@@ -53,11 +54,12 @@
           </div>
         </div>
         @if ($useDate)
-        <div class="data-table-date-filter" style="display: flex; gap: 0.75rem; align-items: center;">
-          <x-text-field type="date" name="mulai" placeholder="" :defaultValue="request()->input('mulai')"></x-text-field>
-          <span style="font-size: 14px; color: #374151;">➤</span>
-          <x-text-field type="date" name="sampai" placeholder="" :defaultValue="request()->input('sampai')"></x-text-field>
-        </div>
+          <div class="data-table-date-filter" style="display: flex; gap: 0.75rem; align-items: center;">
+            <x-text-field type="date" name="mulai" placeholder="" :defaultValue="request()->input('mulai')"></x-text-field>
+            <span style="font-size: 14px; color: rgba(0, 0, 0, 0.4);">➜</span>
+            <x-text-field type="date" name="sampai" placeholder=""
+              :defaultValue="request()->input('sampai')"></x-text-field>
+          </div>
         @endif
       </div>
     </div>
