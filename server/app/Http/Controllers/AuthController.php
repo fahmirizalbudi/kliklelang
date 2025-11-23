@@ -8,6 +8,7 @@ use App\Models\Petugas;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -57,7 +58,7 @@ class AuthController extends Controller
             'nama_lengkap' => 'required',
             'nik' => 'required|digits:16',
             'username' => 'required',
-            'password' => 'required|confirmed',
+            'password' => 'required|confirmed|min:6',
             'telp' => 'required',
             'alamat' => 'required',
         ], [
@@ -77,6 +78,96 @@ class AuthController extends Controller
 
         flash()->addSuccess('Akun berhasil dibuat!', 'Sukses');
         return redirect()->back();
+    }
+
+    public function updatePetugas(Request $request, Petugas $petugas)
+    {
+        $validated = $request->validate([
+            'nama_petugas' => 'required',
+            'username' => [
+                'required',
+                Rule::unique('tb_petugas', 'username')->ignore($petugas),
+                Rule::unique('tb_masyarakat', 'username')->ignore($petugas, 'id_user'),
+            ],
+            'password' => 'nullable|confirmed|min:6'
+        ], [
+            'nama_petugas.required' => 'Nama petugas wajib diisi.',
+            'username.required' => 'Username wajib diisi.',
+            'username.unique' => 'Username sudah digunakan, silakan pilih yang lain.',
+            'password.min' => 'Password minimal harus 6 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+        ]);
+
+        $petugas->nama_petugas = $validated['nama_petugas'];
+        $petugas->username = $validated['username'];
+
+        if (isset($validated['password'])) {
+            $petugas->password = Hash::make($validated['password']);
+        }
+
+        $petugas->save();
+
+        flash()->addSuccess('Profil berhasil diperbarui.');
+        return redirect()->back();
+    }
+
+    public function updateMasyarakat(Request $request, Masyarakat $masyarakat)
+    {
+        $validated = $request->validate([
+            'nama_lengkap' => 'required',
+            'username' => [
+                'required',
+                Rule::unique('tb_masyarakat', 'username')->ignore($masyarakat),
+                Rule::unique('tb_petugas', 'username')->ignore($masyarakat, 'id_petugas'),
+            ],
+            'password' => 'nullable|confirmed|min:6',
+            'telp' => 'required',
+            'alamat' => 'required',
+            'nik' => [
+                'required',
+                'min:16',
+                'max:16',
+                Rule::unique('tb_masyarakat', 'nik')->ignore($masyarakat),
+            ],
+        ], [
+            'nama_lengkap.required' => 'Nama petugas wajib diisi.',
+            'username.required' => 'Username wajib diisi.',
+            'username.unique' => 'Username sudah digunakan, silakan pilih yang lain.',
+            'password.min' => 'Password minimal harus 6 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            'telp.required' => 'Telepon wajib diisi.',
+            'alamat.required' => 'Alamat wajib diisi.',
+            'nik.required' => 'NIK wajib diisi.',
+            'nik.unique' => 'NIK sudah digunakan, silakan pilih yang lain.',
+            'nik.min' => 'NIK harus berisi tepat 16 digit.',
+            'nik.max' => 'NIK harus berisi tepat 16 digit.',
+        ]);
+
+        $masyarakat->nama_lengkap = $validated['nama_lengkap'];
+        $masyarakat->username = $validated['username'];
+        $masyarakat->telp = $validated['telp'];
+        $masyarakat->alamat = $validated['alamat'];
+        $masyarakat->nik = $validated['nik'];
+
+        if (isset($validated['password'])) {
+            $masyarakat->password = Hash::make($validated['password']);
+        }
+
+        $masyarakat->save();
+
+        flash()->addSuccess('Profil berhasil diperbarui.');
+        return redirect()->back();
+    }
+
+    public function profile()
+    {
+        $view = null;
+        if (Auth::guard('petugas')->check()) {
+            $view = 'auth.petugas.profile';
+        } else {
+            $view = 'auth.masyarakat.profile';
+        }
+        return view($view);
     }
 
     public function logout(Request $request)

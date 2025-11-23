@@ -1,0 +1,86 @@
+.profil-pengguna {
+  width: 100%;
+  padding-top: 34px;
+  padding-bottom: 48px;
+  background-color: #f9fafb;
+}
+
+.profil-pengguna-inner {
+  width: 100%;
+  max-width: 1224px;
+  margin: 0 auto;
+}
+
+.masyarakat-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.masyarakat-info-form,
+.masyarakat-akun-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.masyarakat-form-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-button {
+  background-color: #465fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-weight: 500;
+  color: #ffffff;
+  transition: all 0.2s;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #3641f5;
+}
+
+.alamat-masyarakat-group,
+.masyarakat-username {
+  grid-column: 1 / -1;
+}
+
+#alamat {
+  width: 100%;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  padding-left: 1rem;
+  padding-right: 3.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  background-color: transparent;
+  color: #1f2937;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  resize: none;
+}
+
+#alamat::placeholder {
+  color: #9ca3af;
+}
+
+#alamat:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}

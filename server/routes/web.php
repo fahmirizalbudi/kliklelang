@@ -20,21 +20,24 @@ Route::prefix('auth')->group(function () {
     Route::get('login', [AuthController::class, 'viewLogin'])->name('login.view');
     Route::post('login', [AuthController::class, 'login'])->name('login');
   });
+  Route::get('profile', [AuthController::class, 'profile'])->name('profile')->middleware('auth.any');
   Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth.any');
+  Route::put('petugas/{petugas}/update', [AuthController::class, 'updatePetugas'])->name('auth.petugas.update');
+  Route::put('masyarakat/{masyarakat}/update', [AuthController::class, 'updateMasyarakat'])->name('auth.masyarakat.update');
 });
 
 Route::prefix('dashboard')->middleware('auth:petugas')->group(function () {
   Route::get(INDEX_PATH, HomeController::class)->name('home');
   Route::resource('petugas', PetugasController::class)->except(['show'])->parameters([
     'petugas' => 'petugas'
-  ]);
+  ])->middleware('level:administrator');
   Route::resource('barang', BarangController::class)->except('show');
-  Route::resource('masyarakat', MasyarakatController::class)->except('show');
-  Route::patch('masyarakat/{masyarakat}/block', [MasyarakatController::class, 'block'])->name('masyarakat.block');
-  Route::patch('masyarakat/{masyarakat}/unblock', [MasyarakatController::class, 'unblock'])->name('masyarakat.unblock');
+  Route::resource('masyarakat', MasyarakatController::class)->except('show')->middleware('level:administrator');
+  Route::patch('masyarakat/{masyarakat}/block', [MasyarakatController::class, 'block'])->name('masyarakat.block')->middleware('level:administrator');
+  Route::patch('masyarakat/{masyarakat}/unblock', [MasyarakatController::class, 'unblock'])->name('masyarakat.unblock')->middleware('level:administrator');
   Route::get('laporan/pemenang', [LaporanController::class, 'pemenang'])->name('laporan.pemenang');
   Route::get('laporan/pemenang/export', [LaporanController::class, 'pemenangExport'])->name('laporan.pemenang.export');
-  Route::prefix('lelang')->group(function () {
+  Route::prefix('lelang')->middleware('level:petugas')->group(function () {
     Route::get(INDEX_PATH, [LelangController::class, 'index'])->name('lelang.index');
     Route::get('{lelang}/detail', [LelangController::class, 'detail'])->name('lelang.detail');
     Route::get('activation', [LelangController::class, 'activation'])->name('lelang.activation');

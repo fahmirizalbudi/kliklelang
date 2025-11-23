@@ -1,0 +1,52 @@
+.profile-petugas {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: calc(0.25rem * 6) calc(0.25rem * 5);
+}
+
+.petugas-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.petugas-info-form,
+.petugas-akun-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.petugas-form-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-button {
+  background-color: #465fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-weight: 500;
+  color: #ffffff;
+  transition: all 0.2s;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #3641f5;
+}
+
+.petugas-name, .petugas-level, .petugas-username {
+  grid-column: 1 / -1;
+}

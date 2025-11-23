@@ -29,7 +29,7 @@
       <div class="user-profile">
         <a href="#" class="user-profile-wrapper">
           <span class="user-profile-avatar">
-            <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//84/MTA-2044801/la_la-ice--16-batang---bungkus_full03.jpg" width="42" height="42" alt="Profile Avatar">
+            <img src="{{ asset('assets/images/avatar.png') }}" width="42" height="42" alt="Profile Avatar">
           </span>
           <span class="user-profile-name">{{ auth()->guard('petugas')->user()->nama_petugas }}</span>
           <svg class="profile-dropdown-arrow" width="18" height="20" viewBox="0 0 18 20" fill="none"

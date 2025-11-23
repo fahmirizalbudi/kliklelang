@@ -133,9 +133,9 @@
 }
 
 .user-profile-avatar {
-  margin-right: 0.75rem;
-  width: calc(0.25rem * 11);
-  height: calc(0.25rem * 11);
+  margin-right: 0.85rem;
+  width: calc(0.25rem * 10.5);
+  height: calc(0.25rem * 10.5);
   overflow: hidden;
   border-radius: 50%;
 }

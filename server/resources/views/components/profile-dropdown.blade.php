@@ -2,17 +2,17 @@
   <div class="profile-header">
     @if (auth()->guard('petugas')->check())
       <span>{{ auth()->guard('petugas')->user()->nama_petugas }}</span><br>
-      <span>{{ auth()->guard('petugas')->user()->username }}</span>
+      <span>{{ '@' . auth()->guard('petugas')->user()->username }}</span>
     @else
       <span>{{ auth()->guard('masyarakat')->user()->nama_lengkap }}</span><br>
-      <span>{{ auth()->guard('masyarakat')->user()->username }}</span>
+      <span>{{ '@' . auth()->guard('masyarakat')->user()->username }}</span>
     @endif
   </div>
 
   <div class="profile-list">
-    <a href="#" class="profile-list-item">
+    <a href="{{ route('profile') }}" class="profile-list-item">
       <x-icon name="profile"></x-icon>
-      Edit Profile
+      Profile Pengguna
     </a>
   </div>
 

@@ -37,7 +37,7 @@
         <a href="#" class="user-profile-wrapper">
           <span class="user-profile-avatar">
             <img
-              src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//84/MTA-2044801/la_la-ice--16-batang---bungkus_full03.jpg"
+              src="{{ asset('assets/images/avatar.png') }}"
               width="42" height="42" alt="Profile Avatar">
           </span>
           @if (auth()->guard('petugas')->check())
