@@ -12,28 +12,30 @@ use Illuminate\Http\Request;
 class LelangController extends Controller
 {
     private $filterItems;
-    private $items;
 
-    public function __construct(LelangOverviewCard $overview, Lelang $lelang)
+    public function __construct(Lelang $lelang)
     {
         $this->filterItems = [
             ['label' => 'Semua', 'value' => ''],
             ['label' => 'Dibuka', 'value' => 'dibuka'],
             ['label' => 'Ditutup', 'value' => 'ditutup'],
+            ['label' => 'Selesai', 'value' => 'selesai'],
         ];
-
-        $this->items = $overview->items();
     }
 
-    public function index(Request $request)
+    public function index(Request $request, LelangOverviewCard $overview)
     {
-        $items = $this->items;
+        $petugas = Auth::guard('petugas')->user();
+        $items = $overview->items($petugas->id_petugas);
         $filterItems = $this->filterItems;
         $status = $request->input('status');
-        $petugas = Auth::guard('petugas')->user();
         $daftarLelang = Lelang::with(['petugas', 'masyarakat', 'barang'])->where('id_petugas', $petugas->id_petugas);
-        if ($status === 'dibuka' || $status === 'ditutup') {
-            $daftarLelang->where('status', $status);
+        if ($status === 'dibuka') {
+            $daftarLelang->where('status', 'dibuka');
+        } elseif ($status === 'ditutup') {
+            $daftarLelang->where('status', 'ditutup')->whereNull('id_user');
+        } elseif ($status === 'selesai') {
+            $daftarLelang->where('status', 'ditutup')->whereNotNull('id_user');
         }
         $daftarLelang = $daftarLelang->paginate(7);
         return view('dashboard.lelang.index', compact('items', 'filterItems', 'daftarLelang'));

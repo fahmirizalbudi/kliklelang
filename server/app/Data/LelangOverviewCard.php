@@ -7,12 +7,16 @@ use App\Models\Lelang;
 
 class LelangOverviewCard
 {
-  public function items()
+  public function items($petugasId)
   {
-    $lelangIsOpened = Lelang::where('status', 'dibuka')->count();
-    $lelangBidTotal = HistoryLelang::whereDate('created_at', today())->count();
-    $barangLelangIsNotSale = Lelang::where('harga_akhir', null)->count();
-    $highBidOffer = HistoryLelang::whereDate('created_at', today())->max('penawaran_harga');
+    $lelangIsOpened = Lelang::where('status', 'dibuka')->where('id_petugas', $petugasId)->count();
+    $lelangBidTotal = HistoryLelang::whereDate('created_at', today())->whereHas('lelang', function ($query) use ($petugasId) {
+      $query->where('id_petugas', $petugasId);
+    })->count();
+    $barangLelangIsNotSale = Lelang::whereNull('harga_akhir')->where('status', 'ditutup')->where('id_petugas', $petugasId)->count();
+    $highBidOffer = HistoryLelang::whereDate('created_at', today())->whereHas('lelang', function ($query) use ($petugasId) {
+      $query->where('id_petugas', $petugasId);
+    })->max('penawaran_harga');
 
     return [
       [

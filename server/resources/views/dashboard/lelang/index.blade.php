@@ -8,9 +8,20 @@
       <x-overview-card title="Ringkasan" withAdd="{{ route('lelang.activation') }}" withAddText="Aktivasi Lelang"
         :items="$items"></x-overview-card>
       <x-data-table title="Daftar Lelang"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Barang', 'Tanggal Lelang', 'Harga Akhir', 'Status', 'Petugas', 'Pemenang', '']" :filterItems="$filterItems" v2 withoutOptional>
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Barang', 'Tanggal Lelang', 'Harga Akhir', 'Status', 'Petugas', 'Pemenang', '']" :filterItems="$filterItems" v2
+        withoutOptional>
         <x-slot name="footer"></x-slot>
         @foreach ($daftarLelang as $lelang)
+          @php
+            $statusnya = null;
+            if ($lelang->status === 'dibuka') {
+              $statusnya = 'dibuka';
+            } elseif ($lelang->status === 'ditutup' && $lelang->id_user === null) {
+              $statusnya = 'ditutup';
+            } elseif ($lelang->status === 'ditutup' && $lelang->id_user) {
+              $statusnya = 'selesai';
+            }
+          @endphp
           <x-row>
             <x-cell>
               <p class="default-cell-text" style="color: #667085">{{ $daftarLelang->firstItem() + $loop->index }}</p>
@@ -34,7 +45,7 @@
             </x-cell>
             <x-cell>
               <span
-                class="badge {{ ($lelang->status === 'dibuka') ? 'dibuka' : (($lelang->status === 'ditutup') ? 'ditutup' : 'nonaktif') }}">{{ $lelang->status ?? 'Nonaktif' }}</span>
+                class="badge {{ $statusnya }}">{{ $statusnya }}</span>
             </x-cell>
             <x-cell>
               <p class="default-cell-text">{{ $lelang->petugas->nama_petugas }}</p>

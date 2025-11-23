@@ -1,4 +1,4 @@
-@props(['title', 'withAdd', 'withAddText', 'items' => []])
+@props(['title', 'withAdd' => null, 'withAddText' => null, 'items' => []])
 
 <div class="overview-card">
   <div class="overview-card-header">
