@@ -9,7 +9,7 @@
             fill="#667085"></path>
         </svg>
       </button>
-      <div class="search-bar">
+      {{-- <div class="search-bar">
         <form>
           <div class="search-bar-container">
             <span class="search-bar-icon">
@@ -23,7 +23,7 @@
             <input type="text" class="search-bar-input" placeholder="Search or type command ...">
           </div>
         </form>
-      </div>
+      </div> --}}
     </div>
     <div class="appbar-right-section">
       <div class="user-profile">
@@ -34,8 +34,8 @@
           <span class="user-profile-name">{{ auth()->guard('petugas')->user()->nama_petugas }}</span>
           <svg class="profile-dropdown-arrow" width="18" height="20" viewBox="0 0 18 20" fill="none"
             xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.3125 8.65625L9 13.3437L13.6875 8.65625" stroke="#667085" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round"></path>
+            <path d="M4.3125 8.65625L9 13.3437L13.6875 8.65625" stroke="#667085" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </a>
         <x-profile-dropdown></x-profile-dropdown>
@@ -43,3 +43,16 @@
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const hamburgerButton = document.querySelector('.hamburger');
+    const body = document.body;
+    if (hamburgerButton) {
+      hamburgerButton.addEventListener('click', function () {
+        body.classList.toggle('sidebar-collapsed');
+      });
+    }
+
+  });
+</script>

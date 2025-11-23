@@ -79,6 +79,7 @@ body.petugas {
   width: calc(100% - 290px);
   left: 290px;
   top: 77px;
+  transition: all 0.3s ease-in-out;
 }
 
 .main-app-v2 {
@@ -122,4 +123,43 @@ option.placeholder {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0.425;
+}
+
+.appbar {
+  position: fixed;
+  width: calc(100% - 290px);
+  left: 290px;
+  top: 0;
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #e4e7ec;
+  z-index: 99;
+  transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+.sidebar {
+  width: 290px;
+  height: 100%;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  border-right: 1px solid #e4e7ec;
+  padding-inline: calc(0.25rem * 5);
+  transition: left 0.3s ease-in-out;
+}
+
+body.sidebar-collapsed .sidebar {
+  left: -290px;
+}
+
+body.sidebar-collapsed .appbar {
+  left: 0;
+  width: 100%;
+}
+
+body.sidebar-collapsed .main-app {
+  width: 100%;
+  left: 0;
 }
