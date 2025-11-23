@@ -8,7 +8,7 @@
       <x-overview-card title="Ringkasan" withAdd="{{ route('lelang.activation') }}" withAddText="Aktivasi Lelang"
         :items="$items"></x-overview-card>
       <x-data-table title="Daftar Lelang"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Barang', 'Tanggal Lelang', 'Harga Akhir', 'Status', 'Petugas', 'Pemenang', '']" :filterItems="$filterItems" v2
+        description="Berikut adalah data lelang yang telah ditambahkan ke sistem." :rowHeaders="['Barang', 'Tanggal Lelang', 'Harga Akhir', 'Status', 'Petugas', 'Pemenang', '']" :filterItems="$filterItems" v2
         withoutOptional>
         <x-slot name="footer"></x-slot>
         @foreach ($daftarLelang as $lelang)

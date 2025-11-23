@@ -6,7 +6,7 @@
     <x-breadcrumb groupPage="Master Data" currentPage="Laporan Pemenang Lelang"></x-breadcrumb>
     <section>
       <x-data-table title="Daftar Pemenang Lelang"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Tanggal Lelang', 'Barang', 'Petugas', 'Pemenang', 'Telepon Pemenang', 'Harga Akhir']"
+        description="Berikut adalah data pemenang lelang yang telah ditambahkan ke sistem." :rowHeaders="['Tanggal Lelang', 'Barang', 'Petugas', 'Pemenang', 'Telepon Pemenang', 'Harga Akhir']"
         export="{{ route('laporan.pemenang.export', request()->all()) }}" useDate>
         @if (Auth::guard('petugas')->user()->level->level === 'administrator')
           <x-slot name="selectPetugas">

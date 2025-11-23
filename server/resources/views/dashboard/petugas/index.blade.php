@@ -6,7 +6,7 @@
     <x-breadcrumb groupPage="Master Data" currentPage="Petugas"></x-breadcrumb>
     <section>
       <x-data-table title="Daftar Petugas"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!"
+        description="Berikut adalah data petugas yang telah ditambahkan ke sistem."
         withAdd="{{ route('petugas.create') }}" withAddText="Tambah Petugas" :rowHeaders="['Nama Petugas', 'Username', 'Level', '']" withoutOptional>
         @foreach ($daftarPetugas as $petugas)
           <x-row>

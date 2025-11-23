@@ -26,7 +26,7 @@
         <div class="grid-lelang-detail">
           <div class="grid-lelang-detail-left">
             <x-data-table title="Barang Lelang"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!"
+              description="Berikut adalah data barang yang telah dilelang."
               :rowHeaders="['Barang', 'Tanggal', 'Harga Awal', 'Deskripsi', '']" v2 withoutFooter withoutOptional>
               <x-row>
                 <x-cell>
@@ -57,7 +57,7 @@
               </x-row>
             </x-data-table>
             <x-data-table title="Rekapan Tawaran Lelang"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!"
+              description="Berikut adalah data rekapan lelang yang telah masuk ke sistem."
               :rowHeaders="['Masyarakat', 'Penawaran Harga', '']" withoutFooter withoutOptional>
               @foreach ($lelang->historyLelang->sortByDesc('penawaran_harga') as $history)
                 <x-row>

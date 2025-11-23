@@ -6,7 +6,7 @@
     <x-breadcrumb groupPage="Master Data" currentPage="Laporan Aktivitas Lelang"></x-breadcrumb>
     <section>
       <x-data-table title="Daftar Aktivitas Lelang"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Tanggal Lelang', 'Barang', 'Petugas', 'Pemenang', 'Telepon Pemenang', 'Harga Akhir', 'Status']"
+        description="Berikut adalah data aktivitas lelang yang telah ditambahkan ke sistem." :rowHeaders="['Tanggal Lelang', 'Barang', 'Petugas', 'Pemenang', 'Telepon Pemenang', 'Harga Akhir', 'Status']"
         export="{!! route('laporan.aktivitas.export', request()->all()) !!}" useDate>
         <x-slot name="selectPetugas">
           @if (Auth::guard('petugas')->user()->level->level === 'administrator')
