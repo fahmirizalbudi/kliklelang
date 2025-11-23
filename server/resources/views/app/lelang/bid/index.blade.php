@@ -75,7 +75,7 @@
               disabled>
               @foreach ($lelang->historyLelang->sortByDesc('penawaran_harga') as $item)
                 <option value="{{ $item->masyarakat->id_user }}"
-                  data-img="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                  data-img="{{ asset('assets/images/avatar.png') }}"
                   data-html="@<span style='text-transform: none'>{{ $item->masyarakat->username }}</span> ~ &nbsp; <span>{{ $item->masyarakat->nama_lengkap }}</span>">
                 </option>
               @endforeach

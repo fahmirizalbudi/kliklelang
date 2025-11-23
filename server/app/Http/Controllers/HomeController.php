@@ -53,7 +53,7 @@ class HomeController extends Controller
             $totalPetugas = Petugas::whereHas('level', function ($query) {
                 $query->where('level', 'petugas');
             })->count();
-            $totalMasyarakatBlock = Masyarakat::where('status', 'diblokir')->count();
+            $totalMasyarakatBlock = Masyarakat::where('status', 'blokir')->count();
             $overviewItems = [
                 [
                     'title' => 'Total Masyarakat Terdaftar',

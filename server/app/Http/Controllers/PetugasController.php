@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PetugasRequest;
 use App\Models\Level;
 use App\Models\Petugas;
+use Auth;
 use Hash;
 use Illuminate\Http\Request;
 
@@ -55,8 +56,12 @@ class PetugasController extends Controller
 
     public function destroy(Petugas $petugas)
     {
-        $petugas->delete();
-        flash()->addSuccess('Petugas berhasil dihapus!', 'Sukses');
+        if (Auth::guard('petugas')->id() === $petugas->id_petugas) {
+            flash()->addError('Akun sedang dipakai!', 'Gagal');
+        } else {
+            $petugas->delete();
+            flash()->addSuccess('Petugas berhasil dihapus!', 'Sukses');
+        }
         return redirect()->back();
     }
 }

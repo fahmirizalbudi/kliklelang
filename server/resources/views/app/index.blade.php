@@ -13,8 +13,8 @@
           barang menarik, ikuti penawaran real-time, dan menangkan lelang dengan mudah.
         </p>
         <div class="hero-ctas">
-          <button class="hero-cta mulai-lelang">Mulai Lelang</button>
-          <button class="hero-cta pelajari-fitur">Pelajari Fitur</button>
+          <a class="hero-cta mulai-lelang" href="{{ route('app.lelang') }}">Mulai Lelang</a>
+          <a class="hero-cta pelajari-fitur" href="#fitur">Pelajari Fitur</a>
         </div>
       </div>
       <div class="hero-image">
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <section class="features-section">
+    <section class="features-section" id="fitur">
       <h2 class="section-title">Kenapa Memilih KlikLelang?</h2>
       <div class="features-grid">
 
