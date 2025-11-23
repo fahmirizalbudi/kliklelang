@@ -55,7 +55,7 @@
   background-color: #3641f5;
 }
 
-.petugas-name, .petugas-level {
+.petugas-name, .petugas-level, .petugas-username {
   grid-column: 1 / -1;
 }
 

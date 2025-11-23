@@ -41,8 +41,10 @@
                   <x-custom-action actionTo="{{ route('masyarakat.unblock', $masyarakat) }}" method="PATCH" icon="unblock"
                     color="#027a48">Unblokir</x-custom-action>
                 @endif
-                <x-edit-action to="{{ route('masyarakat.edit', $masyarakat) }}"></x-edit-action>
-                <x-delete-action actionTo="{{ route('masyarakat.destroy', $masyarakat) }}"></x-delete-action>
+                <div class="masyarakat-edit-delete">
+                  <x-edit-action to="{{ route('masyarakat.edit', $masyarakat) }}"></x-edit-action>
+                  <x-delete-action actionTo="{{ route('masyarakat.destroy', $masyarakat) }}"></x-delete-action>
+                </div>
               </div>
             </x-cell>
           </x-row>

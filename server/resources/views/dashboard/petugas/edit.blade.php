@@ -22,7 +22,7 @@
         </x-form-card>
         <x-form-card title="Akun Petugas">
           <div class="petugas-akun-form">
-            <div>
+            <div class="petugas-username">
               <x-label-field forField="username">Username</x-label-field>
               <x-text-field placeholder="Masukkan username" type="text" name="username"
                 defaultValue="{{ $petugas->username }}"></x-text-field>
@@ -34,6 +34,14 @@
               <x-label-field forField="password">Password</x-label-field>
               <x-text-field placeholder="Masukkan password" type="password" name="password"></x-text-field>
               <x-message asInfo text="Kosongkan password jika tidak ingin mengubahnya."></x-message>
+            </div>
+            <div>
+              <x-label-field forField="password_confirmation">Konfirmasi Password</x-label-field>
+              <x-text-field placeholder="Masukkan konfirmasi password" type="password" name="password_confirmation"
+                defaultValue="{{ old('password_confirmation') }}"></x-text-field>
+              @error('password')
+                <x-message asError text="{{ $message }}"></x-message>
+              @enderror
             </div>
             <div class="petugas-level">
               <x-label-field forField="id_level">Level</x-label-field>

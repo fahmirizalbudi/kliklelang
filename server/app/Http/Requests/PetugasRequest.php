@@ -30,8 +30,9 @@ class PetugasRequest extends FormRequest
             'username' => [
                 'required',
                 Rule::unique('tb_petugas', 'username')->ignore($petugas),
+                Rule::unique('tb_masyarakat', 'username')->ignore($petugas, 'id_user'),
             ],
-            'password' => $petugas ? 'nullable' : 'required',
+            'password' => $petugas ? 'nullable|confirmed|min:6' : 'required|confirmed|min:6',
             'id_level' => [
                 'required',
                 Rule::exists('tb_level', 'id_level'),
@@ -46,6 +47,8 @@ class PetugasRequest extends FormRequest
             'username.required' => 'Username wajib diisi.',
             'username.unique' => 'Username sudah digunakan, silakan pilih yang lain.',
             'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password minimal harus 6 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
             'id_level.required' => 'Level wajib diisi.',
             'id_level.exists' => 'Level tidak valid atau tidak terdaftar.',
         ];

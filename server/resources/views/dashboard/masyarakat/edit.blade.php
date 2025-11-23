@@ -46,7 +46,7 @@
         </x-form-card>
         <x-form-card title="Akun Masyarakat">
           <div class="masyarakat-akun-form">
-            <div>
+            <div class="masyarakat-username">
               <x-label-field forField="username">Username</x-label-field>
               <x-text-field placeholder="Masukkan username" type="text" name="username"
                 defaultValue="{{ $masyarakat->username }}"></x-text-field>
@@ -58,6 +58,14 @@
               <x-label-field forField="password">Password</x-label-field>
               <x-text-field placeholder="Masukkan password" type="password" name="password"></x-text-field>
               <x-message asInfo text="Kosongkan password jika tidak ingin mengubahnya."></x-message>
+            </div>
+            <div>
+              <x-label-field forField="password_confirmation">Konfirmasi Password</x-label-field>
+              <x-text-field placeholder="Masukkan konfirmasi password" type="password" name="password_confirmation"
+                defaultValue="{{ old('password_confirmation') }}"></x-text-field>
+              @error('password')
+                <x-message asError text="{{ $message }}"></x-message>
+              @enderror
             </div>
           </div>
         </x-form-card>

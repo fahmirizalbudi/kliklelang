@@ -21,7 +21,7 @@
         </x-form-card>
         <x-form-card title="Akun Petugas">
           <div class="petugas-akun-form">
-            <div>
+            <div class="petugas-username">
               <x-label-field forField="username">Username</x-label-field>
               <x-text-field placeholder="Masukkan username" type="text" name="username"
                 defaultValue="{{ old('username') }}"></x-text-field>
@@ -37,9 +37,15 @@
                 <x-message asError text="{{ $message }}"></x-message>
               @enderror
             </div>
+            <div>
+              <x-label-field forField="password_confirmation">Konfirmasi Password</x-label-field>
+              <x-text-field placeholder="Masukkan konfirmasi password" type="password" name="password_confirmation"
+                defaultValue="{{ old('password_confirmation') }}"></x-text-field>
+            </div>
             <div class="petugas-level">
               <x-label-field forField="id_level">Level</x-label-field>
-              <x-select-field name="id_level" placeholder="Pilih level e.g (administrator, petugas)" defaultValue="{{ old('id_level') }}">
+              <x-select-field name="id_level" placeholder="Pilih level e.g (administrator, petugas)"
+                defaultValue="{{ old('id_level') }}">
                 @foreach ($daftarLevel as $level)
                   <option value="{{ $level->id_level }}">{{ $level->level }}</option>
                 @endforeach

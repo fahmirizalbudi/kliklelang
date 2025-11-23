@@ -13,6 +13,11 @@
   flex-direction: column;
 }
 
+.masyarakat-edit-delete {
+  display: flex;
+  gap: 1rem;
+}
+
 .masyarakat-form {
   display: flex;
   flex-direction: column;
@@ -56,7 +61,7 @@
   background-color: #3641f5;
 }
 
-.alamat-masyarakat-group {
+.alamat-masyarakat-group, .masyarakat-username {
   grid-column: 1 / -1;
 }
 
