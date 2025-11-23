@@ -12,7 +12,7 @@
         </button>
         <button onclick="window.location.href='{{ request()->fullUrlWithQuery(['status' => 'proses']) }}'"
           class="status-filter-button {{ request()->input('status') == 'proses' ? 'active' : '' }}">
-          Proses
+          Berjalan
         </button>
         <button onclick="window.location.href='{{ request()->fullUrlWithQuery(['status' => 'menang']) }}'"
           class="status-filter-button {{ request()->input('status') == 'menang' ? 'active' : '' }}">

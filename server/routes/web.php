@@ -53,6 +53,7 @@ Route::middleware(['auth:masyarakat'])->group(function () {
   Route::get(INDEX_PATH, [AppController::class, 'index'])->name('app.index');
   Route::get('lelang', [AppController::class, 'lelang'])->name('app.lelang');
   Route::get('history', [AppController::class, 'history'])->name('app.history');
+  Route::get('incoming', [AppController::class, 'incoming'])->name('app.incoming');
   Route::get('lelang/{lelang}/bid', [AppController::class, 'lelangBid'])->name('app.lelang.bid');
   Route::get('lelang/{lelang}/history', [AppController::class, 'lelangHistory'])->name('app.lelang.history');
   Route::post('lelang/{lelang}/bidding', [AppController::class, 'lelangBidding'])->name('app.lelang.bidding');

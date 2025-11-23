@@ -23,6 +23,11 @@
   <main class="main-app-v2">
     @include('layouts.includes.feed')
     @yield('content')
+    <footer class="app-footer">
+      <div class="footer-container">
+        <p>&copy; {{ date('Y') }} KlikLelang. Semua Hak Cipta Dilindungi.</p>
+      </div>
+    </footer>
   </main>
   <script src="{{ asset('js/components/profile-dropdown.js') }}"></script>
   <script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>

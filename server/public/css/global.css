@@ -42,3 +42,19 @@ option {
 option.placeholder {
   text-transform: none;
 }
+
+.app-footer {
+  width: 100%;
+  padding: 32px 16px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  margin-top: 48px;
+}
+
+.footer-container {
+  max-width: 1224px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6c757d;
+}

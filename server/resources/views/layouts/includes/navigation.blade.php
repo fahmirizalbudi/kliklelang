@@ -6,7 +6,7 @@
         <span class="sidebar-brand-text">KlikLelang</span>
       </a>
     </div>
-    @if (!request()->is('/'))
+    @if (!request()->is('/') && !request()->is('auth/profile'))
       <div class="search-bar">
         <form>
           <div class="search-bar-container">

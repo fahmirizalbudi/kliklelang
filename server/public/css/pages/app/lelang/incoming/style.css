@@ -1,0 +1,141 @@
+#incoming-lelang {
+  width: 100%;
+  max-width: 1224px;
+  margin: 0 auto;
+  padding-top: 34px;
+  padding-bottom: 48px;
+}
+
+.incoming-lelang-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.incoming-lelang-header-text {
+  font-weight: 500;
+  font-size: 1.1875rem;
+  line-height: 1.2352941176;
+  color: #1d2939;
+}
+
+.incoming-lelang-barang-container {
+  margin-top: 24px;
+}
+
+.incoming-lelang-barang-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  row-gap: 40px;
+  list-style: none;
+}
+
+.lelang-card {
+  position: relative;
+}
+
+.ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #f00;
+  color: white;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom-left-radius: 10px;
+  z-index: 10;
+}
+
+.ribbon-menang {
+  background: #3cb371;
+}
+
+.ribbon-kalah {
+  background: #f54b4b;
+}
+
+.barang-list-inner {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.barang-list-image {
+  width: 100%;
+  height: 300px;
+  background-color: #f8f9fa;
+}
+
+.barang-list-image img {
+  object-fit: cover;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.barang-list-content {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 130px;
+}
+
+.barang-name {
+  line-height: 1.3125rem;
+  margin-top: 0;
+  color: #1d2939;
+  font-weight: 600;
+  font-size: 1.125rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ribbon-segera {
+  background: #6c757d;
+  color: #ffffff;
+}
+
+.barang-list-inner.is-coming-soon {
+  cursor: default;
+}
+
+.barang-list-inner.is-coming-soon:hover {
+  border-color: #e9ecef;
+}
+
+.barang-list-inner.is-coming-soon .barang-list-image img {
+  filter: grayscale(80%);
+  opacity: 0.8;
+}
+
+.barang-coming-soon-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.coming-soon-label {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: #565b60;
+  line-height: 1.2;
+}
+
+.coming-soon-date {
+  margin-top: 6px;
+  font-weight: 500;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  color: #343a40;
+}

@@ -16,7 +16,7 @@ class AppController extends Controller
 
     public function lelang()
     {
-        $daftarLelang = Lelang::with(['historyLelang', 'barang'])->where('status', 'dibuka')->get();
+        $daftarLelang = Lelang::with(['historyLelang', 'barang'])->where('status', 'dibuka')->whereDate('tgl_lelang', '<=', now()->toDateString())->inRandomOrder()->get();
         return view('app.lelang.index', compact('daftarLelang'));
     }
 
@@ -53,6 +53,12 @@ class AppController extends Controller
 
         flash()->addSuccess('Penawaran berhasil diajukan!');
         return redirect()->back();
+    }
+
+    public function incoming()
+    {
+        $daftarLelang = Lelang::with(['historyLelang', 'barang'])->where('status', 'ditutup')->whereDate('tgl_lelang', '>', now()->toDateString())->inRandomOrder()->get();
+        return view('app.lelang.incoming.index', compact('daftarLelang'));
     }
 
     public function history(Request $request)
