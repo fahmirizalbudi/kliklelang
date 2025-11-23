@@ -57,7 +57,7 @@ class AuthController extends Controller
             'nama_lengkap' => 'required',
             'nik' => 'required|digits:16',
             'username' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed',
             'telp' => 'required',
             'alamat' => 'required',
         ], [
@@ -66,6 +66,7 @@ class AuthController extends Controller
             'nik.digits' => 'NIK harus berisi tepat 16 digit.',
             'username.required' => 'Username wajib diisi.',
             'password.required' => 'Password wajib diisi.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
             'telp.required' => 'Nomor telepon wajib diisi.',
             'alamat.required' => 'Alamat wajib diisi.',
         ]);

@@ -3,17 +3,13 @@
 
 @push('styles')
   <link rel="stylesheet" href="{{ asset('css/pages/register/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/message.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/text-field.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/label-field.css') }}">
 @endpush
 
 @section('content')
   <section class="register">
-    @if ($errors->any())
-      @foreach ($errors->all() as $error)
-        @php
-          flash()->addError($error, 'Error');
-        @endphp
-      @endforeach
-    @endif
     <div class="register-form">
       <div class="register-form-inner">
         <a href="#" class="brand-link">
@@ -29,36 +25,59 @@
         <div class="register-form-inner-body">
           <form method="POST" action="{{ route('register') }}" class="register-form-inner-body-action">
             @csrf
-            <x-text-field-group>
-              <x-text-field-label text="Nama Lengkap" for="nama_lengkap" required></x-text-field-label>
-              <x-text-field placeholder="Masukkan name lengkap anda ..." name="nama_lengkap"
+            <div>
+              <x-label-field forField="nama_lengkap">Nama Lengkap</x-label-field>
+              <x-text-field placeholder="Masukkan nama lengkap" name="nama_lengkap"
                 :defaultValue="old('nama_lengkap')"></x-text-field>
-            </x-text-field-group>
-            <x-text-field-group>
-              <x-text-field-label text="Username" for="username" required></x-text-field-label>
-              <x-text-field placeholder="Masukkan username anda ..." name="username"
+              @error('nama_lengkap')
+                <x-message asError text="{{ $message }}"></x-message>
+              @enderror
+            </div>
+            <div>
+              <x-label-field forField="username">Username</x-label-field>
+              <x-text-field placeholder="Masukkan username" name="username"
                 :defaultValue="old('username')"></x-text-field>
-            </x-text-field-group>
-            <x-text-field-group>
-              <x-text-field-label text="No Induk (NIK)" for="nik" required></x-text-field-label>
-              <x-text-field placeholder="Masukkan no induk anda ..." name="nik" :defaultValue="old('nik')"
+              @error('username')
+                <x-message asError text="{{ $message }}"></x-message>
+              @enderror
+            </div>
+            <div>
+              <x-label-field forField="nik">No Induk (NIK)</x-label-field>
+              <x-text-field placeholder="Masukkan no induk (NIK)" name="nik" :defaultValue="old('nik')"
                 type="tel"></x-text-field>
-            </x-text-field-group>
-            <x-text-field-group>
-              <x-text-field-label text="Password" for="password" required></x-text-field-label>
-              <x-text-field placeholder="Masukkan password anda ..." type="password" name="password"
+              @error('nik')
+                <x-message asError text="{{ $message }}"></x-message>
+              @enderror
+            </div>
+            <div>
+              <x-label-field forField="password">Password</x-label-field>
+              <x-text-field placeholder="Masukkan password" type="password" name="password"
                 :defaultValue="old('password')"></x-text-field>
-            </x-text-field-group>
-            <x-text-field-group>
-              <x-text-field-label text="Telepon" for="telp" required></x-text-field-label>
-              <x-text-field type="tel" placeholder="Masukkan telepon anda ..." name="telp"
+              @error('password')
+                <x-message asError text="{{ $message }}"></x-message>
+              @enderror
+            </div>
+            <div>
+              <x-label-field forField="password_confirmation">Konfirmasi Password</x-label-field>
+              <x-text-field placeholder="Masukkan konfirmasi password" type="password" name="password_confirmation"
+                :defaultValue="old('password_confirmation')"></x-text-field>
+            </div>
+            <div>
+              <x-label-field forField="telp">Telepon</x-label-field>
+              <x-text-field type="tel" placeholder="Masukkan telepon" name="telp"
                 :defaultValue="old('telp')"></x-text-field>
-            </x-text-field-group>
-            <x-text-field-group>
-              <x-text-field-label text="Alamat" for="alamat" required></x-text-field-label>
-              <x-text-field type="text" placeholder="Masukkan alamat anda ..." name="alamat"
+              @error('telp')
+                <x-message asError text="{{ $message }}"></x-message>
+              @enderror
+            </div>
+            <div>
+              <x-label-field forField="alamat">Alamat</x-label-field>
+              <x-text-field type="text" placeholder="Masukkan alamat" name="alamat"
                 :defaultValue="old('alamat')"></x-text-field>
-            </x-text-field-group>
+              @error('alamat')
+                <x-message asError text="{{ $message }}"></x-message>
+              @enderror
+            </div>
             <button type="submit" class="register-button">
               Register
             </button>

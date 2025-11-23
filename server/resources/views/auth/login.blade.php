@@ -3,17 +3,13 @@
 
 @push('styles')
   <link rel="stylesheet" href="{{ asset('css/pages/login/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/message.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/text-field.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/label-field.css') }}">
 @endpush
 
 @section('content')
   <section class="login">
-    @if ($errors->any())
-      @foreach ($errors->all() as $error)
-        @php
-          flash()->addError($error, 'Error');
-        @endphp
-      @endforeach
-    @endif
     <div class="login-form">
       <div class="login-form-inner">
         <a href="#" class="brand-link">
@@ -29,16 +25,16 @@
         <div class="login-form-inner-body">
           <form method="POST" action="{{ route('login') }}" class="login-form-inner-body-action">
             @csrf
-            <x-text-field-group>
-              <x-text-field-label text="Username / No Induk (NIK)" for="username" required></x-text-field-label>
+            <div>
+              <x-label-field forField="login">Username / No Induk (NIK)</x-label-field>
               <x-text-field icon="username" placeholder="Masukkan username atau nik anda ..." name="login"
                 :defaultValue="old('login')"></x-text-field>
-            </x-text-field-group>
-            <x-text-field-group>
-              <x-text-field-label text="Password" for="password" required></x-text-field-label>
+            </div>
+            <div>
+              <x-label-field forField="password">Password</x-label-field>
               <x-text-field icon="password" placeholder="Masukkan password anda ..." type="password" name="password"
                 :defaultValue="old('password')"></x-text-field>
-            </x-text-field-group>
+            </div>
             <button type="submit" class="login-button">
               Log In
             </button>
