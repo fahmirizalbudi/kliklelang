@@ -73,6 +73,17 @@ class LelangController extends Controller
         ]);
     }
 
+    public function comingSoon(Request $request)
+    {
+        $comingSoon = Lelang::with('barang')->whereDate('tgl_lelang', '>', now()->toDateString());
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Coming soon lelang data retrieved successfully',
+            'data' => $comingSoon
+        ]);
+    }
+
     public function detail(Lelang $lelang)
     {
         $detailLelang = $lelang->load(['masyarakat', 'barang', 'historyLelang.masyarakat']);
