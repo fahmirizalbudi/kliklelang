@@ -106,6 +106,10 @@ class LelangController extends Controller
     public function destroy(Lelang $lelang)
     {
         try {
+            if ($lelang->status === 'dibuka') {
+                flash()->addError('Lelang masih dibuka!', 'Gagal');
+                return redirect()->back();
+            }
             $lelang->delete();
             flash()->addSuccess('Lelang berhasil dihapus!', 'Sukses');
         } catch (QueryException $e) {
