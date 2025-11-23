@@ -6,7 +6,7 @@
     <x-breadcrumb groupPage="Pelelangan" currentPage="Histori Lelang"></x-breadcrumb>
     <section>
       <x-data-table title="Histori Lelang"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Lelang ID', 'Tanggal Lelang', 'Barang', 'Pemenang', 'Harga Akhir', '']" useDate>
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Lelang ID', 'Tanggal Lelang', 'Barang', 'Pemenang', 'Harga Akhir', '']" useDate withoutOptional>
         <x-slot name="footer"></x-slot>
         @foreach ($histories as $history)
           <x-row>

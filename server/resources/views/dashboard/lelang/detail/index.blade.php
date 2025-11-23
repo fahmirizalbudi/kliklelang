@@ -58,7 +58,7 @@
             </x-data-table>
             <x-data-table title="Rekapan Tawaran Lelang"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!"
-              :rowHeaders="['Masyarakat', 'Penawaran Harga', '']" withoutFooter>
+              :rowHeaders="['Masyarakat', 'Penawaran Harga', '']" withoutFooter withoutOptional>
               @foreach ($lelang->historyLelang->sortByDesc('penawaran_harga') as $history)
                 <x-row>
                   <x-cell>

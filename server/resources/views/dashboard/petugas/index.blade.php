@@ -7,7 +7,7 @@
     <section>
       <x-data-table title="Daftar Petugas"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!"
-        withAdd="{{ route('petugas.create') }}" withAddText="Tambah Petugas" :rowHeaders="['Nama Petugas', 'Username', 'Level', '']">
+        withAdd="{{ route('petugas.create') }}" withAddText="Tambah Petugas" :rowHeaders="['Nama Petugas', 'Username', 'Level', '']" withoutOptional>
         @foreach ($daftarPetugas as $petugas)
           <x-row>
             <x-cell>
