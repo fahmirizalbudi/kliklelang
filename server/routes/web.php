@@ -35,6 +35,8 @@ Route::prefix('dashboard')->middleware('auth:petugas')->group(function () {
   Route::resource('masyarakat', MasyarakatController::class)->except('show')->middleware('level:administrator');
   Route::patch('masyarakat/{masyarakat}/block', [MasyarakatController::class, 'block'])->name('masyarakat.block')->middleware('level:administrator');
   Route::patch('masyarakat/{masyarakat}/unblock', [MasyarakatController::class, 'unblock'])->name('masyarakat.unblock')->middleware('level:administrator');
+  Route::get('laporan/aktivitas', [LaporanController::class, 'aktivitas'])->name('laporan.aktivitas');
+  Route::get('laporan/aktivitas/export', [LaporanController::class, 'aktivitasExport'])->name('laporan.aktivitas.export');
   Route::get('laporan/pemenang', [LaporanController::class, 'pemenang'])->name('laporan.pemenang');
   Route::get('laporan/pemenang/export', [LaporanController::class, 'pemenangExport'])->name('laporan.pemenang.export');
   Route::prefix('lelang')->middleware('level:petugas')->group(function () {

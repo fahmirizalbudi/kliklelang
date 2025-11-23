@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Laporan Pemenang Lelang</title>
+  <title>Laporan Aktivitas Lelang</title>
 
   <style>
     * {
@@ -49,7 +49,6 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      table-layout: fixed;
       margin: 10px 0 20px 0;
     }
 
@@ -69,30 +68,6 @@
 
     th:nth-child(1) {
       width: 5%;
-    }
-
-    th:nth-child(2) {
-      width: 15%;
-    }
-
-    th:nth-child(3) {
-      width: 15%;
-    }
-
-    th:nth-child(4) {
-      width: 20%;
-    }
-
-    th:nth-child(5) {
-      width: 15%;
-    }
-
-    th:nth-child(6) {
-      width: 15%;
-    }
-
-    th:nth-child(7) {
-      width: 15%;
     }
 
     .text {
@@ -144,13 +119,13 @@
       </div>
     </div>
 
-    <div class="title-big">LAPORAN PEMENANG LELANG</div>
+    <div class="title-big">LAPORAN AKTIVITAS LELANG</div>
 
     <table>
       <thead>
         @if (Auth::guard('petugas')->user()->level->level === 'administrator')
           <tr>
-            <td colspan="7" style="font-weight: bold">
+            <td colspan="8" style="font-weight: bold">
 
               @if (request()->filled('petugas'))
                 Petugas: {{ \App\Models\Petugas::find(request()->input('petugas'))->nama_petugas }}
@@ -162,7 +137,7 @@
           </tr>
         @else
           <tr>
-            <td colspan="7" style="font-weight: bold">
+            <td colspan="8" style="font-weight: bold">
               Petugas: {{ Auth::guard('petugas')->user()->nama_petugas }}
             </td>
           </tr>
@@ -176,30 +151,40 @@
           <th>Harga Awal</th>
           <th>Pemenang</th>
           <th>Harga Akhir</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         @php
           $totalHargaAkhir = 0;
         @endphp
-        @foreach ($daftarPemenang as $pemenang)
+        @foreach ($daftarLelang as $lelang)
           @php
-            if ($pemenang->harga_akhir !== null) {
-              $totalHargaAkhir += $pemenang->harga_akhir;
+            if ($lelang->harga_akhir !== null) {
+              $totalHargaAkhir += $lelang->harga_akhir;
+            }
+            $statusnya = null;
+            if ($lelang->status === 'dibuka') {
+              $statusnya = 'dibuka';
+            } elseif ($lelang->status === 'ditutup' && $lelang->id_user === null) {
+              $statusnya = 'ditutup';
+            } elseif ($lelang->status === 'ditutup' && $lelang->historyLelang->count() > 0 && $lelang->id_user) {
+              $statusnya = 'selesai';
             }
           @endphp
           <tr>
             <td style="text-align:center;">{{ $loop->iteration }}</td>
-            <td>{{ $pemenang->tgl_lelang }}</td>
-            <td>{{ $pemenang->petugas->nama_petugas }}</td>
-            <td>{{ $pemenang->barang->nama_barang }}</td>
-            <td>Rp {{ number_format($pemenang->barang->harga_awal, 0, ',', '.') }}</td>
-            <td>{{ $pemenang->masyarakat ? $pemenang->masyarakat->nama_lengkap : '-' }}</td>
-            <td>Rp {{ number_format($pemenang->harga_akhir, 0, ',', '.') }}</td>
+            <td>{{ $lelang->tgl_lelang }}</td>
+            <td>{{ $lelang->petugas->nama_petugas }}</td>
+            <td>{{ $lelang->barang->nama_barang }}</td>
+            <td>Rp {{ number_format($lelang->barang->harga_awal, 0, ',', '.') }}</td>
+            <td>{{ $lelang->masyarakat ? $lelang->masyarakat->nama_lengkap : '-' }}</td>
+            <td>Rp {{ $lelang->harga_akhir ? number_format($lelang->harga_akhir, 0, ',', '.') : '-' }}</td>
+            <td style="text-transform: capitalize">{{ $statusnya }}</td>
           </tr>
         @endforeach
         <tr>
-          <td colspan="6" style="text-align:right; font-weight:bold;">TOTAL</td>
+          <td colspan="7" style="text-align:right; font-weight:bold;">TOTAL</td>
           <td style="font-weight:bold;">
             Rp {{ number_format($totalHargaAkhir, 0, ',', '.') }}
           </td>

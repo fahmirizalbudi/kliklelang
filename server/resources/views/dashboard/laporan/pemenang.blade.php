@@ -1,12 +1,12 @@
 @extends('layouts.petugas')
-@section('title', 'KlikLelang - Barang')
+@section('title', 'KlikLelang - Laporan Pemenang Lelang')
 
 @section('content')
   <div class="pemenang">
     <x-breadcrumb groupPage="Master Data" currentPage="Laporan Pemenang Lelang"></x-breadcrumb>
     <section>
       <x-data-table title="Daftar Pemenang Lelang"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Tanggal Lelang', 'Barang', 'Petugas', 'Pemenang', 'Telepon', 'Harga Akhir']"
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, neque!" :rowHeaders="['Tanggal Lelang', 'Barang', 'Petugas', 'Pemenang', 'Telepon Pemenang', 'Harga Akhir']"
         export="{{ route('laporan.pemenang.export', request()->all()) }}" useDate>
         @if (Auth::guard('petugas')->user()->level->level === 'administrator')
           <x-slot name="selectPetugas">
@@ -48,6 +48,9 @@
             </x-cell>
             <x-cell>
               <p class="default-cell-text">{{ $pemenang->masyarakat->nama_lengkap }}</p>
+            </x-cell>
+            <x-cell>
+              <p class="default-cell-text">{{ $pemenang->masyarakat->telp }}</p>
             </x-cell>
             <x-cell>
               <p class="default-cell-text">Rp {{ number_format($pemenang->harga_akhir, 0, '.', '.') }}</p>

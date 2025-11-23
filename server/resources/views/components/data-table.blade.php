@@ -56,7 +56,7 @@
         @if ($useDate)
           <div class="data-table-date-filter" style="display: flex; gap: 0.75rem; align-items: center;">
             <x-text-field type="date" name="mulai" placeholder="" :defaultValue="request()->input('mulai')"></x-text-field>
-            <span style="font-size: 14px; color: rgba(0, 0, 0, 0.4);">➜</span>
+            <span style="font-size: 14px; color: rgba(0, 0, 0, 0.4); transform: rotate(180deg); margin-left: 1px;">❮</span>
             <x-text-field type="date" name="sampai" placeholder=""
               :defaultValue="request()->input('sampai')"></x-text-field>
           </div>

@@ -34,12 +34,10 @@
       @endif
 
       <x-sidebar-group title="Rekap">
+        <x-sidebar-item text="Lap. Aktivitas Lelang" icon="laporan" linkTo="{{ route('laporan.aktivitas') }}"
+          :active="request()->path() === 'dashboard/laporan/aktivitas'" />
         <x-sidebar-item text="Lap. Pemenang Lelang" icon="laporan" linkTo="{{ route('laporan.pemenang') }}"
           :active="request()->path() === 'dashboard/laporan/pemenang'" />
-      </x-sidebar-group>
-
-      <x-sidebar-group title="Lainnya">
-        <x-sidebar-item text="Tentang" icon="tentang" />
       </x-sidebar-group>
     </nav>
   </div>

@@ -58,3 +58,7 @@ option.placeholder {
   font-size: 0.875rem;
   color: #6c757d;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.425;
+}

@@ -1,4 +1,4 @@
-.pemenang {
+.aktivitas {
   max-width: 1536px;
   margin: 0 auto;
   padding: calc(0.25rem * 6) calc(0.25rem * 5);
@@ -30,4 +30,30 @@
 
 .selectPetugas {
   min-width: 220px;
+}
+
+.badge {
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.badge.dibuka {
+  background-color: #ecfdf3;
+  color: #027a48;
+}
+
+.badge.ditutup {
+  background-color: #fef3f2;
+  color: #d92d20;
+}
+
+.badge.selesai {
+  background-color: #f2f4f7;
+  color: #475467;
 }
