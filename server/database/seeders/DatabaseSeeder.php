@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             LevelSeeder::class,
             PetugasSeeder::class,
             MasyarakatSeeder::class,
+            BarangSeeder::class
         ]);
     }
 }
