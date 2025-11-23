@@ -6,6 +6,7 @@ use App\Data\LelangOverviewCard;
 use App\Models\Barang;
 use App\Models\Lelang;
 use Auth;
+use DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -83,16 +84,7 @@ class LelangController extends Controller
 
     public function close(Lelang $lelang)
     {
-        $lelang->load('historyLelang');
-
-        if ($lelang->historyLelang->count() > 0) {
-            $pemenang = $lelang->historyLelang->sortByDesc('penawaran_harga')->first();
-            $lelang->harga_akhir = $pemenang->penawaran_harga;
-            $lelang->id_user = $pemenang->id_user;
-        }
-
-        $lelang->status = 'ditutup';
-        $lelang->save();
+        DB::statement('CALL CLOSE_LELANG(?)', [$lelang->id_lelang]);
         flash()->addSuccess('Lelang berhasil ditutup!', 'Sukses');
         return redirect()->back();
     }
