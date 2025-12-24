@@ -22,7 +22,7 @@ KlikLelang is a simple web and mobile based online auction and bidding platform.
 
 ## 🖼️ Preview
 
-![SIDUK](screenshot.png)
+![](screenshot.png)
 
 ## ✨ Features
 
