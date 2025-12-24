@@ -1,68 +1,102 @@
-<p align="center">
-  <img src="https://github.com/fahmirizalbudi/kliklelang/blob/4d698bb9b026e4463257f0f4b1831c6ec251d446/server/public/brand.svg" alt="Countreez Logo" width="300"/>
-</p>
+<div align="center">
+<a href="https://github.com/fahmirizalbudi/kliklelang" target="blank">
+<img src="https://github.com/fahmirizalbudi/kliklelang/blob/4d698bb9b026e4463257f0f4b1831c6ec251d446/server/public/brand.svg" width="280" alt="Logo" />
+</a>
 
-<br/>
+<br />
+<br />
 
-# 🛒 KlikLelang
+![](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![](https://img.shields.io/badge/Sanctum-20CDEF?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 
-KlikLelang adalah platform lelang online sederhana yang menggabungkan backend dan front-end untuk memudahkan proses lelang dan penawaran.
+</div>
 
----
+<br />
 
-## 🛠️ Teknologi
+## 📣 KlikLelang
 
-- PHP + Blade (backend + tampilan)
-- Dart (front-end / mobile)
-- CSS / HTML / JavaScript untuk UI dan interaktivitas
+KlikLelang is a simple web and mobile based online auction and bidding platform. Built with Laravel as the web application and Flutter for a mobile application. Key features include:
 
----
+## 🖼️ Preview
 
-## 🚀 Instalasi & Setup
+![SIDUK](screenshot.png)
 
-### 1. Clone Repository
-```bash
-git clone https://github.com/fahmirizalbudi/kliklelang.git
-cd kliklelang
-````
+## ✨ Features
 
-### 2. Setup Backend
+- **📊 Dashboard:** User-friendly dashboard to manage auctions and users.
+- **🔐 Authentication:** Secure login and registration system using Laravel Auth and Sanctum.
+- **🔨 Bidding System:** Real-time bidding on listed items.
+- **📦 Item Management:** Create, read, update, and delete auction items easily.
+- **⌛ Auctiom History:** View history of bids and winning auctions.
 
-* Masuk ke folder **backend/server**
-* Install dependensi menggunakan Composer (jika diperlukan)
-* Buat file `.env` dari `.env.example`:
+## 👩‍💻 Tech Stack
 
-```bash
-cp .env.example
-.env
-```
+- **Laravel**: Framework used for Backend REST API and Web Admin Panel.
+- **Flutter**: Used for building the Mobile Application (Android/iOS).
+- **MySQL**: Relational database management system.
+- **Laravel Sanctum**: For Application Programming Interface (API) authentication.
 
-* Atur konfigurasi database dan environment lainnya.
+## 📦 Getting Started
 
-### 3. Jalankan Server Backend
+To get a local copy of this project up and running, follow these steps.
 
-```bash
-php artisan serve
-php artisan migrate
-```
+### 🚀 Prerequisites
 
-### 4. Setup Aplikasi Mobile
+- **PHP** (v8.2 or higher) & **Composer**.
+- **Dart** (v.3.8.1 or higher) & **Flutter SDK**.
+- **MySQL** (or another supported SQL database).
 
-```bash
-flutter pub get
-flutter run
-```
+## 🛠️ Installation
 
----
+1. **Clone the repository:**
 
-## 🎯 Tujuan Proyek
+   ```bash
+   git clone https://github.com/fahmirizalbudi/kliklelang.git
+   cd kliklelang
+   ```
 
-* Membangun platform lelang online dasar
-* Melatih integrasi backend dan UI
-* Menyediakan fondasi untuk fitur lanjutan (autentikasi, penawaran, histori, dashboard)
+2. **Install dependencies:**
 
----
+   ```bash
+   #mobile
+   cd mobile
+   flutter pub get
 
-## 📄 Lisensi & Kontak
+   #server
+   cd server
+   composer install
+   cp .env .env.example
+   php artisan key:generate
+   ```
 
-Maintainer: [@fahmirizalbudi](https://github.com/fahmirizalbudi)
+3. **Run migration:**
+
+   ```bash
+   php artisan migrate
+   ```
+
+4. **Start the development server:**
+
+   ```bash
+   #mobile
+   flutter run
+
+   #server
+   php artisan serve
+   ```
+
+## 📖 Usage
+
+### ✔ Running the Application
+
+- **Website development:** `php artisan serve`.
+- **Mobile development:** `flutter run`.
+
+> Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
+
+## 📜 License
+
+All rights reserved. This project is for educational purposes only and cannot be used or distributed without permission.

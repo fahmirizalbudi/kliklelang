@@ -56,7 +56,7 @@
             <div>
               <x-label-field forField="penawaran_harga">Penawaran Harga</x-label-field>
               <x-text-field type="number" name="penawaran_harga"
-                placeholder="Masukkan penawaran (min. Rp {{ number_format($lelang->historyLelang->count() > 0 ? $lelang->historyLelang->max('penawaran_harga') : $lelang->barang->harga_awal, 0, '.', '.') }})"
+                placeholder="Masukkan penawaran (min. Rp {{ number_format($lelang->historyLelang->count() > 0 ? $lelang->historyLelang->max('penawaran_harga') + 1 : $lelang->barang->harga_awal + 1, 0, '.', '.') }})"
                 defaultValue="{{ old('penawaran_harga') }}"></x-text-field>
             </div>
 
@@ -74,9 +74,8 @@
             <x-select-field name="pemenang" placeholder="No placeholder" defaultValue="{{ $pemenang->masyarakat->id_user }}"
               disabled>
               @foreach ($lelang->historyLelang->sortByDesc('penawaran_harga') as $item)
-                <option value="{{ $item->masyarakat->id_user }}"
-                  data-img="{{ asset('assets/images/avatar.png') }}"
-                  data-html="@<span style='text-transform: none'>{{ $item->masyarakat->username }}</span> ~ &nbsp; <span>{{ $item->masyarakat->nama_lengkap }}</span>">
+                <option value="{{ $item->masyarakat->id_user }}" data-img="{{ asset('assets/images/avatar.png') }}">
+                  {{ '@' . strtolower($item->masyarakat->username) }} ~ {{ ucfirst($item->masyarakat->nama_lengkap) }}
                 </option>
               @endforeach
             </x-select-field>
@@ -110,4 +109,9 @@
 
 @push('styles')
   <link rel="stylesheet" href="{{ asset('css/pages/app/lelang/bid/style.css') }}">
+  <style>
+    .pemenang-lelang .dynamic-select-option-text {
+      text-transform: none;
+    }
+  </style>
 @endpush
